@@ -1,0 +1,13 @@
+{
+  "name": "discovery-to-mvp",
+  "version": "1.0.0",
+  "description": "A 7-step discovery pipeline for product managers: reconcile messy interview transcripts, extract evidence per persona, find where personas collide, frame the problem, scope v1 with a cut list, pick the riskiest assumption, then build and critique a prototype. Stops after every step for your decision.",
+  "author": {
+    "name": "Ofer Regev",
+    "url": "https://theaipmhub.com"
+  },
+  "homepage": "https://github.com/oferregev81pt/discovery-to-mvp",
+  "repository": "https://github.com/oferregev81pt/discovery-to-mvp",
+  "license": "MIT",
+  "keywords": ["product-management", "discovery", "customer-interviews", "mvp", "prototyping"]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "ai-pm-hub",
+  "description": "Claude plugins from The AI PM Hub for product managers",
+  "owner": {
+    "name": "Ofer Regev",
+    "url": "https://theaipmhub.com"
+  },
+  "plugins": [
+    {
+      "name": "discovery-to-mvp",
+      "source": "./plugins/discovery-to-mvp",
+      "description": "Take raw customer interview transcripts to a scoped v1, a cut list, a prototype and an honest critique, one step at a time"
+    }
+  ]
+}

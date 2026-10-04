@@ -1,0 +1,40 @@
+Zoom transcript — "Ordering chat — Avi" — recorded by Ofer Regev
+
+00:00:02 Ofer Regev: Thanks Avi. Like I said this is about how ordering works from your side. Not a performance review.
+00:00:07 Avi Cohen: Okay. Ask.
+00:00:10 Ofer Regev: How many restaurants do you handle?
+00:00:12 Avi Cohen: 35. 36 with the new burger place.
+00:00:17 Ofer Regev: Walk me through last night.
+00:00:20 Avi Cohen: Last night. From 11 the boys notes start. Every chef after service. 30 40, some nights 60 voice notes. I listen and I type them into stock wise line by line, because stock wise doesn't understand the usual plus more lemons. Until one, sometimes 1:30.
+00:00:42 Avi Cohen: Then 4:30 the warehouse starts picking. Five o'clock I get the pickles and I see what's missing. Out of stock, short, whatever. And the warehouse already decided the substitution. No cherry, send plum.
+00:00:58 Ofer Regev: What do you do then?
+00:01:00 Avi Cohen: I message the chef. Cherry out, sent plum, okay? 5 a.m. Nobody answers at 5 a.m. So my rule, if they don't answer by six the van goes. No answer means yes.
+00:01:15 Ofer Regev: How often is there a substitution?
+00:01:17 Avi Cohen: Maybe 15% of orders have something. In summer more.
+00:01:23 Ofer Regev: What happens when the chef doesn't want the substitution?
+00:01:26 Avi Cohen: They send it back with the driver. The driver writes on the delivery note. The paper comes back to the office, sometimes. Then someone has to enter the credit in stock wise.
+00:01:38 Ofer Regev: Who?
+00:01:40 Avi Cohen: Good question. The driver thinks the office does it. The office thinks I do it because it's my customer. I think the driver scans the note. Half the notes come back with coffee on them or don't come back. Honestly nobody really owns it.
+00:01:58 Ofer Regev: Do chefs complain?
+00:02:00 Avi Cohen: Some. Most don't. They're tired. I think they just accept it. Maybe they're angry and not saying.
+00:02:10 Ofer Regev: How do you make sure you don't miss an order?
+00:02:13 Avi Cohen: I never miss an order. I have notifications on for every chef. Well. Maybe one a week. Voice notes at 1 a.m., two chefs send at the same time, one gets buried.
+00:02:28 Ofer Regev: What do you do when it's buried?
+00:02:30 Avi Cohen: I find out at seven when the chef calls me screaming. Then I fix it. I drive something over myself if I have to.
+00:02:40 Ofer Regev: Did harvest line ever try to change how ordering works?
+00:02:43 Avi Cohen: Yes. Last year we built the web portal. Full catalog, prices, order history, everything. Management loved it. 8% of customers used it. Maybe.
+00:02:54 Avi Cohen: Chefs don't order from a laptop at midnight. After three months even the 8% went back to WhatsApp.
+00:03:02 Ofer Regev: Why do you think?
+00:03:04 Avi Cohen: It's another place to go. They live in WhatsApp. And honestly I think they didn't want a catalog. They know what they want. They wanted to know what's coming.
+00:03:15 Ofer Regev: Do chefs know why something's substituted or what's in season?
+00:03:18 Avi Cohen: Not unless I tell them. Purchasing knows. The buyers know the asparagus is amazing this week or the tomatoes are bad because of the heat. That stays inside. I try to pass it on but at 1 a.m. I'm typing onions.
+00:03:34 Ofer Regev: What would help you plan better?
+00:03:36 Avi Cohen: If I knew their menus. A chef changes the menu, suddenly wants 10 kilo fava beings and we have two. I'd love to see what they're planning. But we don't have that. They tell me in a voice note the night before, if at all.
+00:03:52 Ofer Regev: If you could change one thing about your week?
+00:03:55 Avi Cohen: Stop being the night typist. Chef says something, I type it for the warehouse. Warehouse says something, I type it for the chef. I'm a relay with a [inaudible].
+00:04:06 Avi Cohen: I'm a salesman. I want to tell a chef try the asparagus this week, not type five kilo onions at 1 a.m.
+00:04:14 Ofer Regev: What should not change?
+00:04:16 Avi Cohen: The relationship. Chefs buy from people. They buy from me because they trust me. Don't make me a robot.
+00:04:24 Ofer Regev: Anything I didn't ask?
+00:04:26 Avi Cohen: Talk to the drivers. They see the chef's face when they open the boxes. They know more than me.
+00:04:34 Ofer Regev: Thanks Avi.
