@@ -1,0 +1,7 @@
+# Run records are evidence about one session, not part of the plugin.
+evals/runs/
+evals/results/
+**/.raw-manifest.json
+.claude/worktrees/
+node_modules/
+dist/
