@@ -1,6 +1,6 @@
 {
   "name": "discovery-to-mvp",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "A discovery pipeline for product managers: reconcile messy interview transcripts, extract evidence per persona, find where personas collide, frame the problem and its business case, scope v1 with a cut list, pick the riskiest assumption, build and critique a prototype, then optionally write a view of where the product goes and a slide deck of the whole story. Stops after every step for your decision.",
   "author": {
     "name": "Ofer Regev",

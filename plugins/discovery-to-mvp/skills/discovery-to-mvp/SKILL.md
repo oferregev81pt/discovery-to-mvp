@@ -5,7 +5,7 @@ description: Takes the PM through the discovery pipeline one step at a time, fro
 
 # Discovery to MVP (orchestrator)
 
-This skill chains ten step skills into one pipeline. Each step produces one file. Each file feeds the next. Between steps the PM makes a decision, and that decision is written down.
+This skill chains eleven step skills into one pipeline. Each step produces one file. Each file feeds the next. Between steps the PM makes a decision, and that decision is written down.
 
 The pipeline exists because "summarize these interviews" is the easy 10%. The value is in the steps a summary skips: fixing who said what, separating what people stated from what their stories reveal, finding where two personas collide, writing a cut list you can defend, and prototyping only the riskiest piece.
 
@@ -23,6 +23,7 @@ The pipeline exists because "summarize these interviews" is the easy 10%. The va
 | 7 | `prototype-build-critique` | `out/06`, `out/04`, `out/05` | `prototype/`, `out/07-critique.md` |
 | 8 | `future-ideas` (optional, after the critique) | `out/04`, `out/05`, `out/03`, `out/02-*`, `out/07` | `out/08-future-ideas.md` |
 | 9 | `mvp-story-deck` (optional, when presenting) | everything in `out/`, `out/decisions.md` | `out/09-story-outline.md`, a slide deck |
+| 10 | `pipeline-audit` (recommended before presenting; works on a partial run) | everything in `out/`, `raw/`, `prototype/`, `out/decisions.md` | `out/10-audit.md` |
 
 All steps also append to `out/decisions.md`.
 
@@ -77,4 +78,4 @@ Every step skill also works on its own. If the user invokes one directly, it che
 
 ## When the pipeline ends
 
-After step 7, give the user three lines: the v1 in one sentence, the assumption the prototype tests, and the top issue from the critique. Then say that two optional steps remain for anyone who has to present or defend the work: `future-ideas` (step 8, a view of where the product goes and what to bring that nobody asked for) and `mvp-story-deck` (step 9, the whole story as a slide deck). Recommend running them in that order, because the deck uses step 8's output. Point to `out/decisions.md` as the record of what was decided and by whom.
+After step 7, give the user three lines: the v1 in one sentence, the assumption the prototype tests, and the top issue from the critique. Then say that two optional steps remain for anyone who has to present or defend the work: `future-ideas` (step 8, a view of where the product goes and what to bring that nobody asked for) and `mvp-story-deck` (step 9, the whole story as a slide deck). Recommend running them in that order, because the deck uses step 8's output. Then recommend `pipeline-audit` (step 10) as the last thing before anyone else sees the work: it checks the links between steps, which no single step can check about itself. It can also be run mid-pipeline, for example after step 5, when the cost of a lost fact is lowest. Point to `out/decisions.md` as the record of what was decided and by whom.
