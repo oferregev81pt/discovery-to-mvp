@@ -2,6 +2,10 @@
 
 The checker (`check_pipeline.py`) covers what a regex can. This file covers what needs judgment. Each criterion is binary. A judge must quote the evidence for a pass; no quote, no pass.
 
+## Contamination rule
+
+A session scored on unprompted behavior (rows 2.9, 4.7, 9.5 to 9.7) must not read `evals/golden/harvest-line.json` before it finishes. If it did, say so in its report and treat those rows as weak.
+
 ## How to run a judge
 
 Use a fresh context that did not produce the output (a subagent or a new session). Give it: this file, the step's output, the step's inputs, `evals/golden/harvest-line.json` for the traps (or your own case's list), and this instruction:

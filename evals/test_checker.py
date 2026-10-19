@@ -172,6 +172,36 @@ class TestPlantedDefects(Case):
         self.assertEqual(r.status, "pass")
         self.assertIn("delegated", r.detail)
 
+    def test_answered_by_model_counts_as_delegated(self):
+        p = self.root / "out" / "decisions.md"
+        p.write_text(p.read_text().replace("- Made by: PM", "- Made by: PM (answered by model)", 1))
+        r = self.status("A6")
+        self.assertEqual(r.status, "pass")
+        self.assertIn("delegated", r.detail)
+
+    def test_a_quote_in_a_cell_without_an_id_is_not_taken_for_speech(self):
+        self.edit("out/02-extract-ANN.md", "| 1 | Calls depot daily |", '| 1 | Calls the "an invented label for the pain" depot |')
+        self.assertEqual(self.status("A4").status, "pass")
+
+    def test_a_wrong_quote_in_the_same_cell_as_its_id_still_fails(self):
+        self.edit("out/02-extract-ANN.md", '"I call the depot every morning, maybe twice" [ANN-002]', '"I phone the depot every single morning" [ANN-002]')
+        self.assertEqual(self.status("A4").status, "fail")
+
+    def test_stock_word_variants_are_caught(self):
+        for word in ("unlocks", "leveraged", "streamlining", "robustness"):
+            self.edit("out/05-scope.md", "Buyers get a message", f"Buyers get a message that {word}")
+            self.assertEqual(self.status("B13").status, "fail", word)
+            self.edit("out/05-scope.md", f"Buyers get a message that {word}", "Buyers get a message")
+
+    def test_log_must_name_the_files_it_changed(self):
+        p = self.root / "out" / "decisions.md"
+        p.write_text(p.read_text().replace("- Changed in the output: nothing", "- Changed in the output: the scope was recut", 1))
+        self.assertEqual(self.status("B17").status, "fail")
+        p.write_text(p.read_text().replace("the scope was recut", "out/05-scope.md: recut", 1))
+        self.assertEqual(self.status("B17").status, "pass")
+        p.write_text(p.read_text().replace("out/05-scope.md: recut", "out/99-missing.md: recut", 1))
+        self.assertEqual(self.status("B17").status, "fail")
+
     def test_critique_must_state_independence(self):
         (self.root / "out" / "07-critique.md").write_text("# Critique\n## Verdict\nok\n")
         self.assertEqual(self.status("B16").status, "fail")

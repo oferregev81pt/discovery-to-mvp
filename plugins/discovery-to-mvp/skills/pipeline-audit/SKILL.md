@@ -30,8 +30,8 @@ Each step checks its own work a little (step 1 counts turns, step 4 runs six tes
 3. **Turn IDs resolve.** Extract every `[ABC-123]` token from `out/02` to `out/09`. Each must exist as a turn in an `out/01-merged-*` file. List orphans.
 4. **Quotes are verbatim.** For every quoted string next to a turn ID, normalize whitespace and quote marks and search the turn text for it. List mismatches, and say whether the difference is a dropped hedge, a tidied word, a splice of two turns or a wrong ID. A dropped hedge is `blocks`.
 5. **Unlabelled claims.** In extract and collision tables, any cell that says what someone said or did with no ID and no `Interpretation:` label.
-6. **Decision log is complete.** For each step found, `out/decisions.md` has an entry with a decision, `Made by: PM` and a date. Entries must appear in step order. A step N+1 output dated or logged before the step N decision is a stop-rule breach: `blocks`. Count the entries marked `PM (delegated` and list them in the report; they are not evidence that the PM decided.
-7. **Outputs are current.** If an output is older than a file it reads from, or a logged decision says "changed in the output: X" and X is not in the file, it is stale.
+6. **Decision log is complete.** For each step found, `out/decisions.md` has an entry with a decision, `Made by: PM` and a date and time. Entries appear in step order; an entry for a rebuild, fix or pushback of an earlier step may follow later ones. A step N+1 output dated or logged before the step N decision is a stop-rule breach: `blocks`. Count the entries marked `PM (delegated` and list them in the report; they are not evidence that the PM decided.
+7. **Outputs are current.** If an output is older than a file it reads from, or a logged decision says "changed in the output: path: X" and X is not in that file, it is stale and the log entry is wrong. A change the log claims with no trace in the file is a failure.
 
 ### B. Rules the steps promised
 
@@ -45,7 +45,7 @@ Each step checks its own work a little (step 1 counts turns, step 4 runs six tes
 ### C. The chain (does it survive the handoffs)
 
 14. **Top pain, end to end.** Take each persona's `Named top pain` from the extracts and trace each one. Mark where it appears, with the form it takes: problem statement (in their words?), scope (core, small or later), prototype brief (tested, or listed under "won't tell us"), critique (mentioned?), deck. A gap anywhere is `fail`. If it shrank, check that the scope's centrality check says so in writing and the PM decided it in the log.
-15. **Premises.** Every `contradicted` or `untested` premise in step 4 shows up in step 5 as dropped, or kept and tested. If kept, `out/decisions.md` holds the evidence that would change the PM's mind.
+15. **Premises.** Every `contradicted` or `untested` premise in step 4 shows up in step 5 as dropped, or kept and tested. A premise the PM kept after the evidence contradicted it needs an entry in `out/decisions.md` with the evidence that would change their mind (or `not asked (delegated run)`). A premise that is only untested needs no such entry: it needs a kill signal or a test in steps 5 to 6.
 16. **Collisions.** The top three tensions in step 3 each appear in step 5 under "Collisions decided" with a side chosen, or in the log as deliberately avoided.
 17. **Weakest link.** The weakest link of the business case in step 4 is on the ranked assumptions in step 6, or step 6 says what else would test it. The deck and critique name it.
 18. **Assumptions.** Every assumption in step 5 is on the step 6 ranked table. The one chosen has a test question, a success threshold and a kill signal that an observer could actually see.

@@ -50,19 +50,20 @@ If any calls were roleplayed, every later step says so in its caveats, and the f
 3. **Stop and show the results.** Every step ends the same way: show the step's key results in the chat (each step skill says what to show), ask its 1 to 3 decisions with your recommendation marked as such, and ask how to continue: next step, redo this step with changes, edit the output together, or stop. Then wait. **Never start the next step on your own**, even when the user asked to "run the whole pipeline". A request to run the pipeline means "take me through it", one step at a time.
 4. **Log the decision.** Append to `out/decisions.md`:
    ```
-   ## Step N: <step name> — <date>
+   ## Step N: <step name> — <date> <time>
    - Decision: <what was decided>
    - Made by: PM
    - Why: <one line, in the PM's words when they gave a reason>
-   - Changed in the output: <what you edited as a result, or "nothing">
+   - Changed in the output: <one line per file, `path: what changed`, or "nothing">
    ```
+The time lets the log show the order of stops. Name only changes you actually made; the audit looks for each one in the file.
 5. **Apply the decision** to the step's output file before moving on (for example, re-cut the scope after pushback). Then continue to the next step.
 
 There is no unattended mode by default. If nobody is there to answer (a scheduled run, or the user stepped away), finish the current step, post its results and questions, and stop. The next step waits for a person. Never deploy anything without the user.
 
 **Delegated run.** If the PM says in chat to run without asking ("run the rest without asking me", "take your recommendations"), that is an instruction, and it is the only way past a stop. Then:
 - Show each step's results in the chat anyway, take your own marked recommendation at each checkpoint, and keep going.
-- Log every such entry as `Made by: PM (delegated: "<their words>")`, write "the model took its own recommendation" in the Why line, and never write plain `PM`. A delegated entry is not evidence that the PM decided; the audit counts them.
+- Log every such entry as `Made by: PM (delegated: "<their words>")` (a run started with a prompt that says to take your own recommendation is delegated too; quote that instruction), write "the model took its own recommendation" in the Why line, and never write plain `PM`. A delegated entry is not evidence that the PM decided; the audit counts them.
 - Still stop before anything outward-facing: deploying, sharing, sending, publishing beyond a private page, spending money. Delegation covers the decisions, not those.
 - Don't invent the PM's reasons. Where a skill asks the PM for a reason (such as what evidence would change their mind about a premise), write `not asked (delegated run)`.
 - Step 9's outline-approval stop is waived the same way and logged.

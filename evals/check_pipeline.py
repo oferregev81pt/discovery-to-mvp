@@ -26,9 +26,10 @@ BANNED_IN_PROBLEM = [
     "platform", "portal", "dashboard", "app", "tool", "feature", "AI", "automate",
     "build", "integrate", "system", "interface", "page", "view", "bot",
 ]
-STOCK_WORDS = [
-    "seamless", "seamlessly", "leverage", "robust", "empower", "streamline",
-    "elevate", "unlock", "holistic", "delve", "crucial", "game-changer",
+STOCK_WORDS = [  # regex fragments, so "unlocks" and "leveraged" are caught too
+    r"seamless(?:ly)?", r"leverag(?:e|es|ed|ing)", r"robust(?:ly|ness)?", r"empower(?:s|ed|ing|ment)?",
+    r"streamlin(?:e|es|ed|ing)", r"elevat(?:e|es|ed|ing)", r"unlock(?:s|ed|ing)?", r"holistic(?:ally)?",
+    r"delv(?:e|es|ed|ing)", r"crucial(?:ly)?", r"game-changers?",
 ]
 REQUIRED_HEADINGS = {
     "out/01-merged-*.md": ["Merge notes", "Check these first"],
@@ -194,21 +195,25 @@ def check_quotes(root: Path, turns: dict[str, str]) -> Result:
     bad, total = [], 0
     for f in output_files(root):
         for n, ln in enumerate(read(f).splitlines(), 1):
-            ids = [m.group(0) for m in ID_RE.finditer(ln) if m.group(1) in prefixes]
-            if not ids:
-                continue
-            haystacks = [norm(turns[i]) for i in ids if i in turns]
-            if not haystacks:
-                continue
-            haystacks.append(brief_text)
-            for q in quotes_in(ln):
-                for frag in re.split(r"…|\.\.\.", q):
-                    nf = norm(frag)
-                    if len(nf.split()) < 2:
-                        continue
-                    total += 1
-                    if not any(nf in h for h in haystacks):
-                        bad.append(f"{f.name}:{n} \"{frag.strip()[:70]}\" not in {','.join(ids)}")
+            # In a table row a quote is checked only against the IDs in its own cell,
+            # so a quoted label next to an ID in another cell is not taken for speech.
+            units = ln.strip().strip("|").split("|") if ln.lstrip().startswith("|") else [ln]
+            for unit in units:
+                ids = [m.group(0) for m in ID_RE.finditer(unit) if m.group(1) in prefixes]
+                if not ids:
+                    continue
+                haystacks = [norm(turns[i]) for i in ids if i in turns]
+                if not haystacks:
+                    continue
+                haystacks.append(brief_text)
+                for q in quotes_in(unit):
+                    for frag in re.split(r"…|\.\.\.", q):
+                        nf = norm(frag)
+                        if len(nf.split()) < 2:
+                            continue
+                        total += 1
+                        if not any(nf in h for h in haystacks):
+                            bad.append(f"{f.name}:{n} \"{frag.strip()[:70]}\" not in {','.join(ids)}")
     return Result("A4 quotes verbatim", "fail" if bad else "pass",
                   f"{total} quote fragments checked", bad)
 
@@ -240,7 +245,7 @@ def check_decisions(root: Path) -> Result:
             problems.append(f"Step {head[:40]}: no 'Made by: PM'")
         if not re.search(r"(?im)^\s*-\s*Decision:\s*\S", e):
             problems.append(f"Step {head[:40]}: empty Decision")
-    delegated = len(re.findall(r"(?im)^\s*-\s*Made by:\s*PM \(delegated", text))
+    delegated = len(re.findall(r"(?im)^\s*-\s*Made by:\s*PM \((?:delegated|answered by model)", text))
     note = f"; {delegated} of {len(entries)} entries delegated (not evidence the PM decided)" if delegated else ""
     return Result("A6 decision log", "fail" if problems else "pass",
                   f"steps with outputs: {steps_present}; logged: {sorted(logged)}{note}", problems)
@@ -277,6 +282,35 @@ def check_problem(root: Path) -> Result:
     if not ID_RE.search(body):
         problems.append("no turn ID cited")
     return Result("B8 problem statement", "fail" if problems else "pass", f"{len(words)} words", problems)
+
+
+def check_changed_files(root: Path) -> Result:
+    """Every logged change names a file that exists, or says nothing changed."""
+    d = root / "out" / "decisions.md"
+    if not d.exists():
+        return Result("B17 log names changed files", "n/a", "no decision log")
+    problems, n = [], 0
+    for e in re.split(r"(?m)^##\s+", read(d))[1:]:
+        title = e.splitlines()[0][:50]
+        m = re.search(r"(?im)^\s*-\s*Changed in the output:\s*(.+)$", e)
+        if not m:
+            problems.append(f"{title}: no 'Changed in the output' line")
+            continue
+        line = m.group(1).strip()
+        if re.match(r"(?i)nothing\b", line):
+            continue
+        n += 1
+        paths = [x.rstrip(".,;:)") for x in re.findall(r"\b(?:out|prototype|context)/[\w./*<>-]+", line)]
+        if not paths:
+            problems.append(f"{title}: claims a change but names no file")
+            continue
+        for pth in paths:
+            if any(c in pth for c in "*<>"):
+                continue
+            if not (root / pth).exists():
+                problems.append(f"{title}: names {pth}, which does not exist")
+    return Result("B17 log names changed files", "fail" if problems else "pass",
+                  f"{n} entries claim a change", problems)
 
 
 def check_independence(root: Path) -> Result:
@@ -368,7 +402,7 @@ def check_stock_words(root: Path) -> Result:
     files = output_files(root)
     if not files:
         return Result("B13 plain writing", "n/a", "no outputs")
-    pat = re.compile(r"\b(" + "|".join(map(re.escape, STOCK_WORDS)) + r")\b", re.I)
+    pat = re.compile(r"\b(" + "|".join(STOCK_WORDS) + r")\b", re.I)
     notjust = re.compile(r"\bnot just\b[^.\n]{0,60}\bbut\b", re.I)
     for f in files:
         for n, ln in enumerate(read(f).splitlines(), 1):
@@ -427,6 +461,7 @@ def run(root: Path, golden: dict | None) -> list[Result]:
         check_raw(root), check_headings(root), check_ids(root, turns), check_quotes(root, turns),
         check_decisions(root), check_brief(root), check_problem(root), check_cutlist(root),
         check_stock_words(root), check_why_now(root), check_deck_test(root), check_independence(root),
+        check_changed_files(root),
     ]
     if golden:
         res += golden_checks(root, golden)

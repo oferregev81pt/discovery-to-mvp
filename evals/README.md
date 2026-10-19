@@ -10,6 +10,10 @@ Three layers, cheapest first. Run them in this order.
 
 The checker implements the mechanical half of `pipeline-audit`, so the two should agree. If they disagree, one of them has a bug.
 
+## Keep the golden file away from the run
+
+`golden/harvest-line.json` names the triggers and traps the run is expected to find (Avi's summer, Tamar's spring menu, "energy table"). A session that reads it before the run can't show it found them unprompted. For any run scored on rubric rows about unprompted behavior (2.9, 4.7 and the like), the session that runs the pipeline must not read the golden file or `rubrics.md`'s answers until it has finished. Run the checker with `--golden` afterwards, from outside that session.
+
 ## Run it on the sample case
 
 ```bash

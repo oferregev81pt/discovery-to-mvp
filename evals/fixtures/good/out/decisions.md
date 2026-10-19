@@ -18,7 +18,7 @@
 - Decision: keep the cut list, push back on map
 - Made by: PM
 - Why: no data
-- Changed in the output: map stays cut
+- Changed in the output: out/05-scope.md: map stays cut
 ## Step 9: mvp-story-deck — 2026-01-04
 - Decision: outline approved
 - Made by: PM

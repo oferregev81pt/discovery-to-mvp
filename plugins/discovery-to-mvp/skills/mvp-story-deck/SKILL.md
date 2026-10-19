@@ -59,8 +59,8 @@ Run every row. A fail is fixed in the outline, or kept and written in the "open"
 | T6 | Alternatives | The brief's solution, the current workaround and one real alternative each have a reason they lost |
 | T7 | Tradeoff | At least one choice is written with what it costs |
 | T8 | Validation | One business signal, one kill signal, the riskiest assumption, and what the prototype cannot show |
-| T9 | Strength | Every number is labelled said, observed, measured or assumed; no claim about how many people behave a way from a few calls; hedges kept ("maybe", "like") |
-| T10 | Traceability | Every claim has a turn ID or is labelled an assumption; each number matches its source file today |
+| T9 | Strength | Every number, in a title as well as in a body, is labelled said, observed, measured or assumed; no claim about how many people behave a way from a few calls; hedges kept ("maybe", "like"), including in headlines |
+| T10 | Traceability | Every claim has a turn ID or is labelled an assumption. Each number in a slide title and body is re-read from its source file today, and the slide says what the number is about (credits, substitutions, orders, hours) the way the source does |
 | T11 | Writing | No stock AI vocabulary, no "not just X but Y", no abstract noun where an example fits |
 | T12 | Overview first | Slide 1 says what the product or service is today, who uses it, who decides, and how one cycle works, before any slide argues anything |
 | T13 | Terms explained | Every system name, role and internal word is explained in a few words on the slide where it first appears |
@@ -71,6 +71,7 @@ Run every row. A fail is fixed in the outline, or kept and written in the "open"
 - **Title is a claim.** "Clients trust the PG, not the reasoning behind the builds" beats "Findings". Read only the titles: they should tell the story.
 - **One idea per slide**, one visual (a table, a flow, a quote, a diagram). No bullet walls.
 - **At most one quote per slide**, verbatim, with its turn ID in the speaker notes. Keep the hedge inside the quote.
+- **A number in a title is the riskiest number.** Re-read its source before writing it, say what it measures, and keep its hedge in the title or on the same slide, not only in the notes.
 - **Every number has a source and a strength**: said, observed, measured, assumed. A figure a person said is not a measurement; the slide says "said".
 - **Show the weak link.** The weakest link in the business-case chain, the thing the prototype cannot tell us, and the roleplay caveat (if any) appear on the slide they apply to, not only in the appendix.
 - **Show the gaps in the fit.** A deck where every need is met is not credible. A need v1 does not meet is shown with the reason.
