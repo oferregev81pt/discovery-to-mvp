@@ -31,7 +31,7 @@ Starts from `fixtures/good` (must pass), plants one defect at a time, and assert
 
 ## What is and isn't verified
 
-- The checker and its 18 tests run and pass.
-- The golden assertions come from reading the raw transcripts. The `must_not_match` traps were confirmed to exist in the raw text. They have **not** yet been run against real pipeline output, so expect some patterns to need loosening on the first run.
-- The rubrics have never been run.
-- Known gap: `examples/harvest-line/context/brief.md` predates v1.1 and has no business outcome and no team beliefs, so check A8 fails on it. Add them before a baseline run, or the pipeline will stop and ask (which is scenario B.2).
+- The checker and its 20 tests run and pass.
+- First full run: `evals/results/2026-10-19-harvest-line-run1.md`, with the outputs in `evals/runs/harvest-line-v1.1-run1/`. 49 of 49 checks pass; four planted regressions were each caught by the golden file; the audit found four things the checker could not.
+- That run was judged in the same context that produced it, and has no v1.0 baseline. Treat the rubric scores as generous and "improved" as unmeasured.
+- Not run yet: the audit against planted defects (rubric 10), behavior scenarios B.2, B.3, B.4, B.6, the interview guide.
