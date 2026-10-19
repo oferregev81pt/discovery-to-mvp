@@ -107,6 +107,10 @@ class TestPlantedDefects(Case):
         self.edit("out/05-scope.md", "Cut the map?", 'Ann said "this is a robust answer to the question" [ANN-002]')
         self.assertEqual(self.status("B13").status, "pass")
 
+    def test_short_quote_does_not_shift_pairing(self):
+        self.edit("out/02-extract-ANN.md", "| 1 | Calls depot daily |", '| 1 | Calls the "daily" depot |')
+        self.assertEqual(self.status("A4").status, "pass")
+
     def test_raw_edit_detected(self):
         cp.main.__globals__["sys"].argv = ["x", str(self.root), "--snapshot-raw"]
         self.assertEqual(cp.main(), 0)

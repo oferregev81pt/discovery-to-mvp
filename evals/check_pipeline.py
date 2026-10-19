@@ -58,7 +58,13 @@ BRIEF_FIELDS = {
 }
 ID_RE = re.compile(r"\b([A-Z]{2,5})-(\d{3})\b")
 TURN_RE = re.compile(r"^\[([A-Z]{2,5}-\d{3})\]\s+(?:\d{1,2}:\d{2}(?::\d{2})?\s+)?(.*)$")
-QUOTE_RE = re.compile(r"[\"“]([^\"”]{12,}?)[\"”]")
+QUOTE_RE = re.compile(r"\"([^\"]*)\"|“([^”]*)”")
+
+
+def quotes_in(line: str) -> list[str]:
+    """Quoted strings of 12+ characters. Pairs quote marks left to right, so a short
+    quote earlier on the line (\"every week\") cannot shift the pairing."""
+    return [a or b for a, b in QUOTE_RE.findall(line) if len(a or b) >= 12]
 
 
 @dataclass
@@ -192,7 +198,7 @@ def check_quotes(root: Path, turns: dict[str, str]) -> Result:
             haystacks = [norm(turns[i]) for i in ids if i in turns]
             if not haystacks:
                 continue
-            for q in QUOTE_RE.findall(ln):
+            for q in quotes_in(ln):
                 for frag in re.split(r"…|\.\.\.", q):
                     nf = norm(frag)
                     if len(nf.split()) < 2:
