@@ -21,3 +21,7 @@ Interpretation: none.
 | 1 | none named |
 ## Silences
 Never mentioned cost.
+## Recent changes (triggers)
+| What changed | When | Why |
+|---|---|---|
+| none named | | |

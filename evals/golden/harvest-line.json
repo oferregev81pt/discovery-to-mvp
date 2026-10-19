@@ -29,6 +29,9 @@
     {"id": "s2-avi-never-miss", "file": "out/02-extract-AVI*.md", "kind": "must_match", "pattern": "never miss an order", "why": "stated vs revealed: 'never' then 'maybe one a week'"},
     {"id": "s2-avi-relay", "file": "out/02-extract-AVI*.md", "kind": "must_match", "pattern": "relay|night typist", "why": "Avi's own biggest problem"},
 
+    {"id": "s2-triggers-avi", "file": "out/02-extract-AVI*.md", "kind": "must_match", "pattern": "Recent changes[\\s\\S]*summer", "why": "Avi's only stated trigger: substitutions are more frequent in summer"},
+    {"id": "s2-triggers-tam", "file": "out/02-extract-TAM*.md", "kind": "must_match", "pattern": "Recent changes[\\s\\S]*spring menu", "why": "Tamar's new spring menu is a trigger"},
+
     {"id": "s3-silence-means-yes", "file": "out/03-collisions.md", "kind": "must_match", "pattern": "no answer means yes", "why": "same event, two stories: Avi's 'no answer means yes' vs Tamar asleep at 5 a.m."},
     {"id": "s3-credit-unowned", "file": "out/03-collisions.md", "kind": "must_match", "pattern": "credit", "why": "workflow step nobody owns (driver, office, rep each point elsewhere)"},
     {"id": "s3-menu-relay", "file": "out/03-collisions.md", "kind": "must_match", "pattern": "fava|menu", "why": "menu changes travel by voice note and may never reach purchasing"},
@@ -36,6 +39,7 @@
     {"id": "s4-premise-contradicted", "file": "out/04-problem.md", "kind": "must_match", "pattern": "contradicted", "why": "the brief's 'build an ordering app' premise conflicts with the 8% portal and 'no new apps'"},
     {"id": "s4-portal-evidence", "file": "out/04-problem.md", "kind": "must_match", "pattern": "8%", "why": "the evidence against the brief's framing"},
     {"id": "s4-outcome-proposed", "file": "out/04-problem.md", "kind": "must_match", "pattern": "proposed", "why": "the brief names no business number; the step must propose one and mark it"},
+    {"id": "s4-why-now", "file": "out/04-problem.md", "kind": "must_match", "pattern": "why now:", "why": "the business case states why now, typed and labelled"},
     {"id": "s4-statement-no-app", "file": "out/04-problem.md", "scope": "problem-statement", "kind": "must_not_match", "pattern": "\\b(app|portal|dashboard|platform|tool|bot)\\b", "why": "no solution words in the statement"},
 
     {"id": "s5-whatsapp-entry", "file": "out/05-scope.md", "kind": "must_match", "pattern": "whatsapp", "why": "'if it's not in WhatsApp I won't use it' plus the failed portal"},
@@ -43,6 +47,7 @@
     {"id": "s5-portal-cut", "file": "out/05-scope.md", "kind": "must_match", "pattern": "portal|ordering app", "why": "the brief's own solution appears in the cut list on the record"},
     {"id": "s5-avi-stays", "file": "out/05-scope.md", "kind": "must_match", "pattern": "avi|sales rep|rep stays", "why": "constraint: reps stay in the loop; Tamar: no robot instead of Avi"},
 
+    {"id": "s9-deck-test", "file": "out/09-story-outline.md", "kind": "must_match", "pattern": "## Deck test", "why": "the outline carries the deck test before the deck is built"},
     {"id": "s6-mock-bite", "file": "out/06-prototype-brief.md", "kind": "must_match", "pattern": "plum", "why": "mock data should carry the cherry-to-plum substitution the chef actually hit"},
     {"id": "s6-kill-signal", "file": "out/06-prototype-brief.md", "kind": "must_match", "pattern": "kill signal", "why": "a test that cannot fail is not a test"}
   ],

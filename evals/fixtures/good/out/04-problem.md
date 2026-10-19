@@ -13,5 +13,6 @@ Buyers phone the depot twice a morning because they cannot tell where a parcel i
 | Evidence | pass | IDs cited |
 ## Business case
 Outcome: support calls per 100 shipments (given)
+Why now: peak season starts next month, brief. If we wait a year: the calls double again.
 ## Non-goals
 Pricing.

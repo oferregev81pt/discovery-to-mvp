@@ -124,6 +124,36 @@ class TestPlantedDefects(Case):
         self.edit("out/02-extract-ANN.md", "| 1 | Calls depot daily |", '| 1 | Calls the "daily" depot |')
         self.assertEqual(self.status("A4").status, "pass")
 
+    def test_missing_why_now(self):
+        self.edit("out/04-problem.md", "Why now: peak season starts next month, brief. If we wait a year: the calls double again.\n", "")
+        self.assertEqual(self.status("B14").status, "fail")
+
+    def test_why_now_without_label_or_cost_of_waiting(self):
+        self.edit("out/04-problem.md", "Why now: peak season starts next month, brief. If we wait a year: the calls double again.",
+                  "Why now: peak season starts next month.")
+        r = self.status("B14")
+        self.assertEqual(r.status, "fail")
+        self.assertEqual(len(r.items), 2)
+
+    def test_deck_test_missing(self):
+        self.edit("out/09-story-outline.md", "## Deck test", "## Something else")
+        self.assertEqual(self.status("B15").status, "fail")
+
+    def test_failed_deck_test_must_be_listed_open(self):
+        self.edit("out/09-story-outline.md", "| T4 | Why now | pass | ok |", "| T4 | Why now | fail | no trigger |")
+        self.assertEqual(self.status("B15").status, "fail")
+        self.edit("out/09-story-outline.md", "None.", "T4: no why-now evidence; slide 2 says so.")
+        self.assertEqual(self.status("B15").status, "pass")
+
+    def test_more_than_twelve_slides(self):
+        extra = "".join(f"| {i} | Q | claim | said | [ANN-002] | x |\n" for i in range(3, 14))
+        self.edit("out/09-story-outline.md", "\n## Deck test", extra + "\n## Deck test")
+        self.assertEqual(self.status("B15").status, "fail")
+
+    def test_extract_without_recent_changes_section(self):
+        self.edit("out/02-extract-ANN.md", "## Recent changes (triggers)", "## Something else")
+        self.assertEqual(self.status("A2").status, "fail")
+
     def test_raw_edit_detected(self):
         cp.main.__globals__["sys"].argv = ["x", str(self.root), "--snapshot-raw"]
         self.assertEqual(cp.main(), 0)

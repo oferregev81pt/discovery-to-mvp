@@ -19,3 +19,8 @@
 - Made by: PM
 - Why: no data
 - Changed in the output: map stays cut
+## Step 9: mvp-story-deck — 2026-01-04
+- Decision: outline approved
+- Made by: PM
+- Why: fine
+- Changed in the output: nothing

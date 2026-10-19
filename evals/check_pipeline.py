@@ -34,7 +34,7 @@ REQUIRED_HEADINGS = {
     "out/01-merged-*.md": ["Merge notes", "Check these first"],
     "out/02-extract-*.md": [
         "Who", "Pains", "Workarounds", "Numbers", "Stated vs revealed",
-        "Trust and satisfaction", "Business consequence", "Silences",
+        "Trust and satisfaction", "Business consequence", "Silences", "Recent changes",
     ],
     "out/03-collisions.md": ["Workflow map", "Collisions", "Neither mentioned", "Shared ground"],
     "out/04-problem.md": [
@@ -275,6 +275,44 @@ def check_problem(root: Path) -> Result:
     return Result("B8 problem statement", "fail" if problems else "pass", f"{len(words)} words", problems)
 
 
+def check_why_now(root: Path) -> Result:
+    f = root / "out" / "04-problem.md"
+    if not f.exists():
+        return Result("B14 why now stated", "n/a", "no out/04-problem.md")
+    body = section(read(f), "Business case") or ""
+    m = re.search(r"(?im)^\**why now:?\**\s*(.+)$", body)
+    if not m:
+        return Result("B14 why now stated", "fail", "no 'Why now' line in the business case")
+    line = m.group(1)
+    problems = []
+    if not re.search(r"(?i)evidence|brief|assumption|no why-now evidence", line):
+        problems.append("triggers are not labelled evidence, brief or assumption")
+    if not re.search(r"(?i)wait", body[m.start():]):
+        problems.append("does not say what happens if we wait a year")
+    return Result("B14 why now stated", "fail" if problems else "pass", line[:80], problems)
+
+
+def check_deck_test(root: Path) -> Result:
+    f = root / "out" / "09-story-outline.md"
+    if not f.exists():
+        return Result("B15 deck test", "n/a", "no out/09-story-outline.md")
+    t = read(f)
+    tests = re.findall(r"(?m)^\|\s*(T\d+)\s*\|[^|]*\|\s*(pass|fail)", t, re.I)
+    problems = []
+    if not re.search(r"(?m)^##\s+Deck test", t):
+        problems.append("no Deck test section")
+    slides = [ln for ln in t.split("## Deck test")[0].splitlines() if re.match(r"\|\s*\d+\s*\|", ln)]
+    if len(slides) > 12:
+        problems.append(f"{len(slides)} slides, limit is 12")
+    if len(tests) < 11:
+        problems.append(f"deck test has {len(tests)} rows, expected 11")
+    open_part = t.split("## Open")[1] if "## Open" in t else ""
+    for tid, verdict in tests:
+        if verdict.lower() == "fail" and tid not in open_part:
+            problems.append(f"{tid} fails and is not listed under Open")
+    return Result("B15 deck test", "fail" if problems else "pass", f"{len(slides)} slides, {len(tests)} tests", problems)
+
+
 def check_cutlist(root: Path) -> Result:
     f = root / "out" / "05-scope.md"
     if not f.exists():
@@ -371,7 +409,7 @@ def run(root: Path, golden: dict | None) -> list[Result]:
     res = [
         check_raw(root), check_headings(root), check_ids(root, turns), check_quotes(root, turns),
         check_decisions(root), check_brief(root), check_problem(root), check_cutlist(root),
-        check_stock_words(root),
+        check_stock_words(root), check_why_now(root), check_deck_test(root),
     ]
     if golden:
         res += golden_checks(root, golden)

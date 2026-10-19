@@ -53,6 +53,7 @@ Each step checks its own work a little (step 1 counts turns, step 4 runs six tes
 20. **Critique to action.** Each top issue in step 7 is fixed in the files it points to, or logged as accepted. List the open ones.
 21. **Future ideas have seeds.** Each bet in step 8 cites a turn ID, a cut-list row or a silence that exists. At most one is `Imagined`.
 22. **Deck traces.** Every slide claim in `out/09-story-outline.md` points to a file and ID that exist and say it. At least one reversal appears. The weakest link is on the slide where it applies. Nothing on a slide is stronger than its evidence ("clients trust us" from one call).
+23. **Deck answers why, why now and fit.** `out/09-story-outline.md` holds the deck test with results. Read the slide titles alone: they answer why this matters, for whom, why now, why this option, whether it fits, how we will know, and what could go wrong. Slide 1 names exactly one business number. The why-now slide has a typed, labelled trigger, or says `no why-now evidence`. Every Named top pain and every severity-3 pain is on the fit map with a rating, and unmet needs are shown. At most 12 slides. Re-read the source file for each number on a slide and compare it, with its hedge.
 
 ## Output: `out/10-audit.md`
 

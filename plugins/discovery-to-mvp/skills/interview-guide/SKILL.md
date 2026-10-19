@@ -18,6 +18,7 @@ Good synthesis starts before the call. Most bad discovery data comes from hypoth
 0. **Why are we doing this? Write it down before any question.** Two lines in the guide:
    - The **business outcome** this work should move for the company (retention, revenue per client, cost to serve, win rate, time to deliver) and how we would notice it moved. If the team can't name one, that is the first finding: say so, and add "what does this cost or earn the business?" to the learning goals.
    - The **customer outcome**: what the person on the other side is trying to get done.
+   - The **why now**: what changed recently, or what happens if the team waits a year. If nobody can say, that is a finding: add "what changed?" to the learning goals.
    Calls that start without these end with a list of annoyances and no way to rank them.
 1. **List what we need to learn.** Write 4 to 6 learning goals. Each is a question about the world, not about a feature. Good: "How does a client know a request was seen?" Bad: "Do clients want a status page?"
 2. **Name the assumption behind each goal** and how bad it is if wrong (high / medium / low). Order goals by that.
@@ -30,6 +31,7 @@ Good synthesis starts before the call. Most bad discovery data comes from hypoth
    - **Dig into the pain, don't test the idea.** The call exists to hear their problem in their words, not to find out whether your solution would work. Never ask "would this work for you?", "would you use…?", "what would you want?" or "what would help?" Hypotheticals get polite yeses. Instead ask what happened the last time, what it cost, what they did about it, and what they tried before. If you want a reaction to an idea, save it for step 7 and a prototype.
    - **Follow the strongest complaint.** When they name something as the biggest problem, or say it twice, or say it with feeling, stop and go three questions deep before moving on: when did it last happen, what did you do, what did it cost, who else noticed. Do this even when it isn't in the guide, and even when it isn't what the team came to build.
    - **Ask for the business consequence per persona.** "What happened to the project when that went wrong?" "Would that change how much work you give us?" "Who else decides whether you keep working with us?" Not every answer will have a number. Notice when none does.
+   - **Ask what changed.** "What is different this month or season compared with last?" Triggers (a new menu, a season, a rule, a new competitor, a failed earlier attempt) are the raw material for the why-now argument later.
    - One "what do you like / what must not change" question. People protect things you'd otherwise break.
    - One "what's the biggest problem, if you had to pick one" question, late in the call, after they've told stories. Compare their answer to their stories in step 2.
    - Close with "What should I have asked and didn't?"
@@ -55,7 +57,7 @@ Good synthesis starts before the call. Most bad discovery data comes from hypoth
 ```
 # Interview guide — <project>
 ## Why we're doing this
-Business outcome: ... / Customer outcome: ...
+Business outcome: ... / Customer outcome: ... / Why now: ...
 Calls are: real | roleplayed
 ## Beliefs to break
 | Belief | Question that would show the opposite |

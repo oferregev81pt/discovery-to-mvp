@@ -72,9 +72,12 @@ Topics the brief expected, or that the workflow obviously includes, that this pe
 ### 11. Their words
 5 to 10 short verbatim phrases worth reusing in problem statements and product copy ("evidence folder", "a lottery every morning").
 
+### 12. Recent changes (triggers)
+Anything the person says has changed lately, is about to change, or forces a decision soon: a season, a volume, a new menu, a new rule, a new competitor, a failed earlier attempt, a deadline. One row each: what changed, when, why it makes this problem worse or more urgent for them, and the turn ID. Don't infer a trigger the person didn't mention. If there is none, write `none named`. This feeds the "why now" in step 4 and the deck.
+
 ## Rules
 
-- Every line from sections 3–9 and 11 has a turn ID. No ID, no line.
+- Every line from sections 3–9, 11 and 12 has a turn ID. No ID, no line.
 - Interpretations are allowed only inside fields labelled `Interpretation:`.
 - No solutions. If one occurs to you, add it to a `Parked ideas` line at the end.
 - Don't merge two different pains because they sound alike. "I can't find my old orders" and "my late change wasn't seen" are different problems with different fixes.
@@ -99,6 +102,8 @@ Source: out/01-merged-<CODE>.md
 ## Must not change
 ## Other people in the loop
 ## Silences
+## Recent changes (triggers)
+| What changed | When | Why it makes this worse or more urgent [ID] |
 ## Their words
 Parked ideas: ...
 ```

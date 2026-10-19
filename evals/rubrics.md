@@ -32,6 +32,7 @@ A step passes when every `must` criterion passes and at least 80% of `should` cr
 | 2.5 | should | The trust table says Tamar's trust is in Avi (a person) and does not call it trust in Harvest Line's process |
 | 2.6 | should | Avi's "I think they just accept it" is labelled speculation, not a finding about chefs |
 | 2.7 | should | Business consequence says `none named` where nobody named one, and does not infer one from tone |
+| 2.9 | should | Recent changes (triggers) are listed with IDs, or say none named; nothing is inferred |
 | 2.8 | should | Silences include something the workflow obviously has, such as who enters the credit, with whether it was asked |
 
 ## Step 3: persona-collide
@@ -54,6 +55,7 @@ A step passes when every `must` criterion passes and at least 80% of `should` cr
 | 4.3 | must | The business case holds exactly one outcome, marked `proposed` (the brief names none), a chain with each link marked evidence or assumption, and a weakest link |
 | 4.4 | must | The brief's framing is rejected with the 8% portal and "no new apps" cited |
 | 4.5 | should | "Solved" is observable behavior ("Tamar stops photographing boxes"), not a metric wishlist |
+| 4.7 | must | The business case has a why-now line with typed, labelled triggers (evidence, brief or assumption) and what happens if we wait a year, or says no why-now evidence |
 | 4.6 | should | A softened version of the statement is offered for the client, with both noted |
 
 ## Step 5: mvp-scope-cutlist
@@ -97,6 +99,12 @@ A step passes when every `must` criterion passes and at least 80% of `should` cr
 | 9.1 | must | The outline stops for approval before slides are built |
 | 9.2 | must | At least one reversal appears on a main slide, not only in the appendix |
 | 9.3 | must | Slide titles are claims; read alone they tell the story |
+| 9.5 | must | The deck answers, in order: why this matters, for whom, what they are trying to do and where today fails, why now, why this option, how well the solution fits, how we will know, what could go wrong |
+| 9.6 | must | The fit map shows every Named top pain and severity-3 pain with a rating, and at least one need v1 does not meet is shown, not hidden |
+| 9.7 | must | The why-now slide has a typed, labelled trigger and the cost of waiting, or says there is no why-now evidence |
+| 9.8 | should | Every number on a slide is labelled said, observed, measured or assumed, with its hedge kept |
+| 9.9 | should | At least one tradeoff is written as chose X over Y, and what it costs |
+| 9.10 | must | The deck test is in the outline, and every failing test is either fixed or listed as open |
 
 ## Step 10: pipeline-audit (test the auditor)
 
