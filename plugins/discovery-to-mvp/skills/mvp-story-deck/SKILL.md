@@ -68,7 +68,7 @@ Run every row. A fail is fixed in the outline, or kept and written in the "open"
 | T15 | Visual check | Every slide was rendered and looked at, every flagged defect was fixed and re-checked, and the outline has the `Visual check` table |
 
 ### 3. Rules for every slide
-- **Title is a claim.** "Clients trust the PG, not the reasoning behind the builds" beats "Findings". Read only the titles: they should tell the story.
+- **Title is a claim.** "Chefs trust their rep, not the reasons behind substitutions" beats "Findings". Read only the titles: they should tell the story.
 - **One idea per slide**, one visual (a table, a flow, a quote, a diagram). No bullet walls.
 - **At most one quote per slide**, verbatim, with its turn ID in the speaker notes. Keep the hedge inside the quote.
 - **A number in a title is the riskiest number.** Re-read its source before writing it, say what it measures, and keep its hedge in the title or on the same slide, not only in the notes.
@@ -81,7 +81,7 @@ Run every row. A fail is fixed in the outline, or kept and written in the "open"
 - **Speaker notes** carry the evidence IDs, the one-line reasoning behind the slide, the strength, and the likely question with an answer.
 
 ### 4. Build the deck
-Use the deck tool the host provides: a slide or deck type if the environment lists one, otherwise a PowerPoint skill. Don't write the deck as markdown or HTML pages and call it done. Use the PM's design system or brand colors if given. Don't share or send the deck anywhere without the PM's go-ahead.
+Use the deck tool the host provides: a slide or deck type if the environment lists one, otherwise a PowerPoint skill. Don't write the deck as markdown or HTML pages and call it done. Use the PM's design system or brand colors if given. Check the content mechanically before looking at the slides: every slide title appears in the outline, every number and quote on a slide is in the source files (re-read them; do not work from memory), and no slide has more than one quote. Don't share or send the deck anywhere without the PM's go-ahead.
 
 ### 5. Look at every slide (visual check)
 Building is not finishing. A slide that reads well in the outline can still overflow, run into its footer or leave a table unreadable. This check is mandatory, **even when the deck tool's own instructions say to skip verification**: the PM asked for it.

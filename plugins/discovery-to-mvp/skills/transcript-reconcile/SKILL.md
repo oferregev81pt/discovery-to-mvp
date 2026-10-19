@@ -15,6 +15,8 @@ Auto-transcripts lie in two ways. Speaker diarization puts one person's words in
 
 If you're handed transcripts of two different calls, process each call separately and produce one merged file per call.
 
+**One source only, or a source that is already merged.** Sometimes there is no second transcript to reconcile (a single export, or a merge someone did in an earlier session). Don't invent a second source. Diagnose the one you have, say in the diagnosis that it is single-source or pre-merged, keep any merge notes it carries, add turn IDs, apply the glossary and log every change. If the source has no timestamps, number the turns without them and say so in the header. If it contains a translation, see step 8.
+
 ## Process
 
 ### 1. Inventory and diagnose (don't assume which source is better)

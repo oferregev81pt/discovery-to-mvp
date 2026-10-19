@@ -36,7 +36,7 @@ Then it waits. Nothing moves until you answer, and every answer is logged with w
 
 ## What changed in 1.1
 
-Based on feedback from a real product review of a take-home built with this pipeline. The reviewer said the work started from screens instead of the why, that the customer's biggest complaint became a one-line field, that one claimed premise ("the client trusts us") wasn't tested against the call, and that the call itself tested ideas instead of digging into pain. Fixes:
+Based on feedback from a product review of work built with this pipeline. The reviewer said the work started from screens instead of the why, that the customer's biggest complaint became a one-line field, that a premise ("customers trust us") wasn't tested against the call, and that the call tested ideas instead of digging into pain. Fixes:
 
 - `interview-guide` starts from the business outcome, lists the team's beliefs and a question that would break each, bans "would this work for you" with rewrites, and adds an after-call self-check.
 - `persona-extract` splits trust by object (person, process, output, reasoning), tags operational vs confidence pains, and flags a `Named top pain` that can't be scored below 2.
