@@ -32,7 +32,7 @@ Collect candidates from four places and write each with its source:
 - **Cut list:** items cut for lack of supply or data. What would make them possible?
 - **Silences and "neither mentioned":** things the workflow clearly includes that nobody raised. The best unrequested ideas live here.
 - **Workarounds:** the shadow spreadsheets and relays that show a job nobody serves. What product would make them unnecessary?
-- **The company side:** an asset the company has that the customer doesn't see (data across many clients, the PG's judgment, the idea engine, a library of past results). What would it look like if that were the product, not the service around it?
+- **The company side:** an asset the company has that the customer doesn't see (data across many customers, staff judgment, an internal engine, a library of past results). What would it look like if that were the product, not the service around it?
 
 Add one candidate that **attacks the company's own model**: something that makes part of today's service unnecessary or cheaper to run, or changes who the customer is. If every idea protects the current model, the list is too safe.
 

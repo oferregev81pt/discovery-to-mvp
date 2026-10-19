@@ -55,7 +55,7 @@ Each row: Stated (quote + ID) | Revealed (quote + ID) | Interpretation (labelled
 Quote it in full with its ID. Then one line: does the rest of the interview support it, contradict it, or sharpen it?
 
 ### 7b. Trust and satisfaction, split by object
-When the person says they trust, like or are happy with something, find out what it is attached to. Trust in a **person** ("I just trust Tom"), in the **process** (things arrive on time), in the **output** (the builds are good) and in the **reasoning** (I understand why you made this) are different claims, and one can sit next to a complaint about another. For each trust or satisfaction statement write: object | quote [ID] | any complaint about a different object [ID]. Don't summarize it as "trusts us". If the only trust is in one person, note that the trust doesn't transfer to the product or to anyone else on the team.
+When the person says they trust, like or are happy with something, find out what it is attached to. Trust in a **person** ("I just trust my rep"), in the **process** (things arrive on time), in the **output** (the deliveries are good) and in the **reasoning** (I understand why you made this) are different claims, and one can sit next to a complaint about another. For each trust or satisfaction statement write: object | quote [ID] | any complaint about a different object [ID]. Don't summarize it as "trusts us". If the only trust is in one person, note that the trust doesn't transfer to the product or to anyone else on the team.
 
 ### 7c. Business consequence
 For each pain scored 2 or 3: did the person say what it costs the business or the relationship (work moved elsewhere, a renewal at risk, a launch missed, hours, money)? Quote it with an ID, or write `none named`. Don't infer a consequence from tone. This feeds the business case in step 4.
@@ -85,7 +85,7 @@ Don't trust your own quoting. After writing the extract, check it mechanically (
 - Every turn ID exists in `out/01-merged-<CODE>.md` and is the turn that says the thing. Count and cite by the ID printed there, not by position.
 - Every quoted string is a substring of the merged transcript (allowing `...` for a cut). Paraphrases go without quote marks.
 - Every "unprompted" label has an earlier turn ID showing no question about the topic came first, and every "prompted" label names the leading question (`INT-nnn`).
-Fix what fails, then say in the chat how many quotes and IDs you checked. In a test run of this plugin, a first draft had three wrong turn IDs and six non-verbatim quotes that only this check caught.
+Fix what fails, then say in the chat how many quotes and IDs you checked. In a test run of this plugin, a first draft had wrong turn IDs and non-verbatim quotes that only this check caught.
 
 ## Output: `out/02-extract-<CODE>.md`
 

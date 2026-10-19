@@ -38,7 +38,7 @@ Use the slides below, merge or drop the ones that don't apply, never reorder the
 No more than 11 slides. Fewer is better. An appendix may hold the full cut list, the collisions table and the quotes.
 
 ### 3. Rules for every slide
-- **Title is a claim.** "Clients trust the PG, not the reasoning behind the builds" beats "Findings". Read only the titles: they should tell the story.
+- **Title is a claim.** "Chefs trust their rep, not the reasons behind substitutions" beats "Findings". Read only the titles: they should tell the story.
 - **One idea per slide**, one visual (a table, a flow, a quote, a diagram). No bullet walls.
 - **At most one quote per slide**, verbatim, with its turn ID in the speaker notes.
 - **Every number has a source and a strength**: said, estimated, measured.
