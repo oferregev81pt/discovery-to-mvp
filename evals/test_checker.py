@@ -146,6 +146,10 @@ class TestPlantedDefects(Case):
         self.edit("out/09-story-outline.md", "## Deck test", "## Something else")
         self.assertEqual(self.status("B15").status, "fail")
 
+    def test_visual_check_section_required(self):
+        self.edit("out/09-story-outline.md", "## Visual check", "## Something else")
+        self.assertEqual(self.status("B15").status, "fail")
+
     def test_failed_deck_test_must_be_listed_open(self):
         self.edit("out/09-story-outline.md", "| T4 | Why now | pass | ok |", "| T4 | Why now | fail | no trigger |")
         self.assertEqual(self.status("B15").status, "fail")

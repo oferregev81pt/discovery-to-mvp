@@ -19,6 +19,15 @@ Deck: none
 | T9 | Strength | pass | ok |
 | T10 | Traceability | pass | ok |
 | T11 | Writing | pass | ok |
+| T12 | Overview first | pass | ok |
+| T13 | Terms explained | pass | ok |
+| T14 | Plain words | pass | ok |
+| T15 | Visual check | pass | ok |
+
+## Visual check
+| Slide | Result | What I changed |
+|---|---|---|
+| 1 | ok | nothing |
 
 ## Open
 None.

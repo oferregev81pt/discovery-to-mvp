@@ -108,6 +108,10 @@ A step passes when every `must` criterion passes and at least 80% of `should` cr
 | 9.7 | must | The why-now slide has a typed, labelled trigger and the cost of waiting, or says there is no why-now evidence |
 | 9.8 | should | Every number on a slide is labelled said, observed, measured or assumed, with its hedge kept |
 | 9.9 | should | At least one tradeoff is written as chose X over Y, and what it costs |
+| 9.11 | must | Slide 1 is an overview: what the product or service is today, who uses it, who decides, and how one cycle works, before any slide argues |
+| 9.12 | should | Every system name, role and internal word is explained in a few words on the slide where it first appears |
+| 9.13 | should | Every slide has an "In plain words" sentence and a newcomer could follow it without the speaker notes |
+| 9.14 | must | Every slide was rendered and looked at, each flagged defect was fixed and re-checked, and the outline has a Visual check table saying which renderer was used |
 | 9.10 | must | The deck test is in the outline, and every failing test is either fixed or listed as open |
 
 ## Step 10: pipeline-audit (test the auditor)

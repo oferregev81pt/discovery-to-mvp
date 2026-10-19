@@ -7,6 +7,8 @@ description: Turns the whole discovery pipeline into a slide deck that argues fo
 
 A deck that walks through the exercise ("here is what I did") loses to a deck that argues ("here is why this matters, why now, how the solution meets what people need, and how we will know"). This step builds the second kind, in a fixed order, from files that already exist, and tests the outline against product-sense rules before building. The output is a slide deck, not a markdown file.
 
+Slide 1 is an overview: what the product or service is today, who uses it, who decides, and how one cycle of it works, in plain words, before any argument. A reader who knows nothing about the business should be able to follow every later slide from it.
+
 The order follows one rule from product work: **customer and user first.** The deck never describes the solution before it has said who it is for, what they are trying to do, and where today fails them.
 
 ## Inputs
@@ -24,8 +26,8 @@ A decision-maker asks these in this order. Each gets one slide (two at most). Th
 
 | # | Question | Source | The slide must contain | If the pipeline lacks it |
 |---|---|---|---|---|
-| 1 | **Why does this matter?** | `04` business case, `02` | Who is hurt, what it costs them in their own terms, and the one business number it should move, each with a strength label | Say "not yet known" and what would measure it. Never fill it in |
-| 2 | **Who is it for?** | `02`, `03`, brief | Users (who use it) and customers (who pay or decide), and which one v1 serves first and why | Name the missing side as a risk |
+| 1 | **What is it today, and who is it for?** | brief (problem space), `02`, `03` workflow map | What the product or service is, how one cycle works from start to finish (a short flow), who uses it (users) and who pays or decides (customers), and which one v1 serves first and why. Every term the later slides use is explained here in a few words | Say what is missing. Never guess how the business works |
+| 2 | **Why does this matter?** | `04` business case, `02` | Who is hurt, what it costs them in their own terms, and the one business number it should move, each with a strength label | Say "not yet known" and what would measure it. Never fill it in |
 | 3 | **What are they trying to do, and where does today fail them?** | `02`, `03` | A table: need, how it is served today, where it breaks, evidence ID. Include each persona's Named top pain | |
 | 4 | **What did we hear, and how much does it prove?** | `02`, brief | Who, how many conversations, how long (the recorded length from the extract, not the booked slot), real or roleplayed; strength of each claim. No prevalence from a few calls | |
 | 5 | **What did we get wrong?** | `04` premise audit, `decisions.md` | The reversals: what we believed, what the evidence said, what we did. At least one | If there is none, say nobody tested a premise |
@@ -37,7 +39,7 @@ A decision-maker asks these in this order. Each gets one slide (two at most). Th
 | 11 | **How will we know it worked?** | `05` adoption plan, `06` | The business signal tied to the number on slide 1, the leading indicator, the riskiest assumption, the test and its kill signal, and what the prototype cannot show | |
 | 12 | **What could go wrong, and what do we need?** | `07`, `04`, `05` | The top critique issues and which were fixed, the open unknowns, the next cheapest test, and the decision or help needed | |
 
-No more than 12 slides. An appendix may hold the full cut list, the collisions table, the premise audit and the quotes. If two questions share one slide, say so in the outline. Never reorder.
+No more than 12 slides. An appendix may hold the full cut list, the collisions table, the premise audit and the quotes. If two questions share one slide, say so in the outline. Never reorder. Slide 1 answers two questions (what it is today, who it is for) so the deck stays at 12.
 
 ## Process
 
@@ -51,7 +53,7 @@ Run every row. A fail is fixed in the outline, or kept and written in the "open"
 |---|---|---|
 | T1 | Titles alone | Reading only the slide titles in order, a stranger could answer: why, for whom, why now, why this option, does it fit, how will we know, what could go wrong |
 | T2 | Customer first | No slide describes the solution before slides 1 to 3 have named the user, the need and where today fails |
-| T3 | Why | Slide 1 names who is hurt, what it costs, and exactly one business number, each with a strength label |
+| T3 | Why | Slide 2 names who is hurt, what it costs, and exactly one business number, each with a strength label |
 | T4 | Why now | Slide 6 has at least one typed trigger with a label and the cost of waiting a year, or states `no why-now evidence` and the plan changes |
 | T5 | Fit | Every Named top pain and every severity-3 pain appears on the fit map with a rating, and every unmet need is shown |
 | T6 | Alternatives | The brief's solution, the current workaround and one real alternative each have a reason they lost |
@@ -60,6 +62,10 @@ Run every row. A fail is fixed in the outline, or kept and written in the "open"
 | T9 | Strength | Every number is labelled said, observed, measured or assumed; no claim about how many people behave a way from a few calls; hedges kept ("maybe", "like") |
 | T10 | Traceability | Every claim has a turn ID or is labelled an assumption; each number matches its source file today |
 | T11 | Writing | No stock AI vocabulary, no "not just X but Y", no abstract noun where an example fits |
+| T12 | Overview first | Slide 1 says what the product or service is today, who uses it, who decides, and how one cycle works, before any slide argues anything |
+| T13 | Terms explained | Every system name, role and internal word is explained in a few words on the slide where it first appears |
+| T14 | Plain words | Every slide has an "In plain words" sentence, and a newcomer could follow it without the speaker notes |
+| T15 | Visual check | Every slide was rendered and looked at, every flagged defect was fixed and re-checked, and the outline has the `Visual check` table |
 
 ### 3. Rules for every slide
 - **Title is a claim.** "Clients trust the PG, not the reasoning behind the builds" beats "Findings". Read only the titles: they should tell the story.
@@ -69,10 +75,20 @@ Run every row. A fail is fixed in the outline, or kept and written in the "open"
 - **Show the weak link.** The weakest link in the business-case chain, the thing the prototype cannot tell us, and the roleplay caveat (if any) appear on the slide they apply to, not only in the appendix.
 - **Show the gaps in the fit.** A deck where every need is met is not credible. A need v1 does not meet is shown with the reason.
 - **Same rules as the critique.** No AI-sounding phrases (seamless, leverage, robust, empower, "not just X but Y"), no abstract nouns where a concrete example fits.
+- **Plain words.** Every title is followed by one sentence, in plain language, saying what it means ("In plain words: ..."). Each term the audience may not know (a system name, a role, an internal word like "substitution", "cutoff", "pilot", "kill signal", "fit map") is explained in a few words the first time it appears, on the slide it appears on. No shorthand the audience has not met. A number comes with its unit and what it means for the reader.
+- **The newcomer test.** A person who missed the interviews can follow each slide from the slide alone, without the speaker notes.
 - **Speaker notes** carry the evidence IDs, the one-line reasoning behind the slide, the strength, and the likely question with an answer.
 
 ### 4. Build the deck
-Use the deck tool the host provides: a slide or deck type if the environment lists one, otherwise a PowerPoint skill. Don't write the deck as markdown or HTML pages and call it done. Use the PM's design system or brand colors if given. Then open the result and read each slide for overflow, empty placeholders and titles that don't read as claims, unless the host's deck tool says not to verify; if it does, say that the slides were not checked. Report the link or file location. Don't share or send the deck anywhere without the PM's go-ahead.
+Use the deck tool the host provides: a slide or deck type if the environment lists one, otherwise a PowerPoint skill. Don't write the deck as markdown or HTML pages and call it done. Use the PM's design system or brand colors if given. Don't share or send the deck anywhere without the PM's go-ahead.
+
+### 5. Look at every slide (visual check)
+Building is not finishing. A slide that reads well in the outline can still overflow, run into its footer or leave a table unreadable. This check is mandatory, **even when the deck tool's own instructions say to skip verification**: the PM asked for it.
+
+1. **Render every slide on the 1920 by 1080 canvas.** If the deck is a folder of slide files (a `project/deck.json` and `project/slides/*.html`), run `python3 slide_preview.py <deck folder> <out folder>` (it sits next to this file), serve the out folder (`python3 -m http.server`), open `preview.html` in a browser, and read the table at the top. If the host can open the deck itself, open that and look at each slide. If neither is possible, say so in the outline and mark T15 as failed.
+2. **Read the measurements, then look at the picture.** The script flags text past the bottom margin, content touching the footer, text past the side margins, text under 24px, text wider than its box, and slides that are nearly empty. Treat a flag as a defect. It is an approximation of the deck tool's own renderer, so a pass is not proof: look at every slide, at half size is enough, and check by eye for overlap, clipped or tiny text, an unreadable table, a lonely title with empty space, and a number or term the picture makes unclear.
+3. **Fix and look again.** Shorten text, split a slide, shrink a title, enlarge a table that floats in empty space, or move a footer. Re-render and re-check each slide you changed. Don't stop at the first pass.
+4. **Record it.** In the outline, a `## Visual check` table: slide, result (ok or the defect found), and what you changed. Say which renderer you used and that the deck tool's own view was or was not opened.
 
 ## Output
 
@@ -81,9 +97,11 @@ Use the deck tool the host provides: a slide or deck type if the environment lis
 ```
 # Story outline — <project> — for <audience>, <minutes> min
 Deck: <link or path>
-| # | Question | Claim (slide title) | Strength | Evidence [IDs] | Source file |
+| # | Question | Claim (slide title) | In plain words | Strength | Evidence [IDs] | Source file |
 ## Deck test
 | # | Test | Pass/fail | Why |
+## Visual check
+| Slide | Result | What I changed |
 ## Open
 The tests that still fail and where the deck says so.
 ```
@@ -92,12 +110,13 @@ The tests that still fail and where the deck says so.
 
 This step always ends with a stop, including when it runs inside a full pipeline or the user said "run everything". It stops twice: after the outline, and after the deck. (If the PM has told the session to run without asking, finish the outline and deck, log the approval as delegated, and say that the outline stop was waived.)
 
-1. **After the outline:** show the slide claims as a numbered list in the chat, with the deck-test results, not only the file path. Ask the decisions below. Wait. Don't build until the PM answers.
-2. **After the deck:** show the link or path, the list of slide titles and any slide you are least sure about. Ask: redo with changes · edit together · done.
+1. **After the outline:** show the slide claims, each with its plain-words sentence, as a numbered list in the chat, with the deck-test results, not only the file path. Ask the decisions below. Wait. Don't build until the PM answers.
+2. **After the deck:** show the link or path, the list of slide titles, the result of the visual check (what was wrong and what you fixed) and any slide you are least sure about. Ask: redo with changes · edit together · done.
 
 ### Decisions for you
 
 - "Reading only the titles, is this the story you'd tell? What's missing or out of order?"
+- "Slide 1 explains the business and how one cycle works in <n> steps. Would someone new to it follow? What would you add?"
 - "Slide 6 says <why now, or that there is no evidence>. Is that the real reason now? If you know a trigger the calls didn't show, tell me and I'll label it as yours."
 - "Slide 8 shows <n> needs v1 does not meet. Are you comfortable saying that out loud?"
 - "Slide 5 shows <the reversal>. Main deck or appendix?" (Recommend the main deck; it is the evidence that the process worked.)

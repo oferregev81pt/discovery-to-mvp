@@ -319,8 +319,10 @@ def check_deck_test(root: Path) -> Result:
     slides = [ln for ln in t.split("## Deck test")[0].splitlines() if re.match(r"\|\s*\d+\s*\|", ln)]
     if len(slides) > 12:
         problems.append(f"{len(slides)} slides, limit is 12")
-    if len(tests) < 11:
-        problems.append(f"deck test has {len(tests)} rows, expected 11")
+    if len(tests) < 15:
+        problems.append(f"deck test has {len(tests)} rows, expected 15")
+    if not re.search(r"(?m)^##\s+Visual check", t):
+        problems.append("no Visual check section")
     open_part = t.split("## Open")[1] if "## Open" in t else ""
     for tid, verdict in tests:
         if verdict.lower() == "fail" and tid not in open_part:
