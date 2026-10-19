@@ -189,6 +189,8 @@ def check_quotes(root: Path, turns: dict[str, str]) -> Result:
     if not turns:
         return Result("A4 quotes verbatim", "n/a", "no merged transcripts")
     prefixes = {i.split("-")[0] for i in turns}
+    brief = root / "context" / "brief.md"
+    brief_text = norm(read(brief)) if brief.exists() else ""  # quoting the brief is allowed
     bad, total = [], 0
     for f in output_files(root):
         for n, ln in enumerate(read(f).splitlines(), 1):
@@ -198,6 +200,7 @@ def check_quotes(root: Path, turns: dict[str, str]) -> Result:
             haystacks = [norm(turns[i]) for i in ids if i in turns]
             if not haystacks:
                 continue
+            haystacks.append(brief_text)
             for q in quotes_in(ln):
                 for frag in re.split(r"…|\.\.\.", q):
                     nf = norm(frag)

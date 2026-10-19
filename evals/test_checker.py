@@ -53,6 +53,11 @@ class TestPlantedDefects(Case):
                   "the tracking page is not helpful")
         self.assertEqual(self.status("A4").status, "fail")
 
+    def test_quote_from_the_brief_is_allowed(self):
+        self.edit("out/04-problem.md", "Customers trust our tracking.\n## Premise",
+                  'The brief says "Toy Co ships parts by courier" [ANN-002].\n## Premise')
+        self.assertEqual(self.status("A4").status, "pass")
+
     def test_missing_section(self):
         self.edit("out/05-scope.md", "## Centrality check", "## Something else")
         self.assertEqual(self.status("A2").status, "fail")
