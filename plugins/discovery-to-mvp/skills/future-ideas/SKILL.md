@@ -19,7 +19,7 @@ A v1 answers the brief. A senior product person also says where the product is g
 ### 1. State the position
 Write a paragraph, no more than 120 words, that opens with "In a year, this product is…" It names who it serves, what job it does for them and for the company, and why this company is the one to build it. It must be falsifiable: someone can disagree with it. Avoid the word "platform" unless the next clause says what it does.
 
-Then one line: **v1 is the first step because** it proves X, which unlocks Y.
+Then one line: **v1 is the first step because** it proves X, which makes Y possible.
 
 ### 2. Draw the path
 Three horizons, each a sentence or two and each tied to the cut list:
@@ -90,3 +90,4 @@ Then wait for the user.
 - "Is this the position you'd defend? Where would you say it differently?" (If the PM can't say it in one sentence, the position isn't done.)
 - "Which bet leads? I recommend <X> because <one line>."
 - "Is there a bet on the list the company would never do? Keep it as a challenge, or drop it?"
+- "Update the 'First step of' section of `out/05-scope.md` to match this position?" (Recommend yes: step 5 wrote it from the business case before this step existed.)

@@ -57,7 +57,7 @@ Watch for **meaning-changing** errors: words that are real words but wrong ("ene
 
 ### 7. Number the turns
 
-Give every turn an ID: speaker code + three-digit sequence over the whole call, e.g. `[INT-001]`, `[TAM-002]`, `[INT-003]`. Sequence numbers are shared across speakers so IDs sort in call order. Keep the original timestamp after the ID.
+Give every turn an ID: speaker code + three-digit sequence over the whole call, e.g. `[INT-001]`, `[TAM-002]`, `[INT-003]`. Sequence numbers are shared across speakers so IDs sort in call order. Keep the original timestamp after the ID. The interviewer's code `INT` repeats in every call, so `INT-025` can mean a different turn in each. In any file that covers more than one call (collisions, problem, scope, audit, deck), cite an interviewer turn with its call: `INT-025 (TAM)`. A per-persona extract may cite it bare.
 
 ### 8. Translate if needed
 

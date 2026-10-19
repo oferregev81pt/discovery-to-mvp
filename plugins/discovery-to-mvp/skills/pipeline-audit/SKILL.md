@@ -52,7 +52,7 @@ Each step checks its own work a little (step 1 counts turns, step 4 runs six tes
 19. **Prototype matches the brief.** If `prototype/` exists: `src/data/mock.json` holds the "bite" values the brief specified; the entry point matches the adoption plan; the screens are no more than the brief's; `NOTES.md` holds what was left out; the README copies the test script. Run the build or dev server and walk the flow if you can. Say if you could not.
 20. **Critique to action.** Each top issue in step 7 is fixed in the files it points to, or logged as accepted. List the open ones.
 21. **Future ideas have seeds.** Each bet in step 8 cites a turn ID, a cut-list row or a silence that exists. At most one is `Imagined`.
-22. **Deck traces.** Every slide claim in `out/09-story-outline.md` points to a file and ID that exist and say it. At least one reversal appears. The weakest link is on the slide where it applies. Nothing on a slide is stronger than its evidence ("clients trust us" from one call).
+22. **Deck traces.** Every slide claim in `out/09-story-outline.md` points to a file and ID that exist and say it. At least one reversal appears. The weakest link is on the slide where it applies. Nothing on a slide is stronger than its evidence ("clients trust us" from one call). Build the **numbers table** for the audit report: every number on a slide (titles included) and in the problem statement, as shown, next to the source words and whether the source's hedge ("maybe", "about", "like", "sometimes", "I guess") survives. A number whose source is hedged and whose slide is not is a failure, even when the number is right.
 23. **Deck answers why, why now and fit.** `out/09-story-outline.md` holds the deck test with results. Read the slide titles alone: they answer why this matters, for whom, why now, why this option, whether it fits, how we will know, and what could go wrong. Slide 2 names exactly one business number; slide 1 is an overview with every term explained. The why-now slide has a typed, labelled trigger, or says `no why-now evidence`. Every Named top pain and every severity-3 pain is on the fit map with a rating, and unmet needs are shown. At most 12 slides. Re-read the source file for each number on a slide and compare it, with its hedge.
 
 ## Output: `out/10-audit.md`
@@ -69,6 +69,8 @@ One sentence: safe to present | safe with fixes | not safe, and the single bigge
 | # | Check | Severity | Where | Expected | Found | Redo step |
 ## Top pain trail
 | Stage | Appears as | OK? |
+## Numbers table
+| Where | As shown | Source words [ID] | Hedge kept? |
 ## Passed checks
 | # | Check | What was counted |
 ## Could not verify

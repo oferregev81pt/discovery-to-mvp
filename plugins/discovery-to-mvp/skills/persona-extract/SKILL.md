@@ -28,7 +28,7 @@ A leading question names an answer ("Would a dashboard help with that?"). Any an
 For each pain:
 - One-line description in plain words.
 - The best verbatim quote and its turn ID. Add a second ID if they came back to it.
-- **Prompted / unprompted.**
+- **Prompted / unprompted.** Write `prompted (INT-nnn, leading)` for a pain raised only in answer to a leading question. **Hard cap: such a pain scores 1, whatever else the evidence says.** Check every row of the table against this before writing the file.
 - **Severity 1–3**, scored from evidence, not tone:
   - 3 = they built a workaround, OR it cost money/time they can name, OR it happened and had a consequence (a launch missed, a fine, a complaint made to them). A consequence has to be an event the person reports first-hand: who did what, about what, at least once. A habit ("he complains", "they get annoyed") is not an event; with no workaround or named cost it scores 2 at most. Say which in the evidence.
   - 2 = recurring and they can say how often, but no workaround or named cost.

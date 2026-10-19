@@ -71,7 +71,7 @@ There is no unattended mode by default. If nobody is there to answer (a schedule
 
 ## Rules that hold across every step
 
-- **Traceability.** Every claim about what a person said or experienced carries a turn ID from a merged transcript, like `[TAM-024]`. Step 1 creates these IDs. If a claim has no ID, it's an interpretation and must be labelled `Interpretation:`. If neither, delete it.
+- **Traceability.** Every claim about what a person said or experienced carries a turn ID from a merged transcript, like `[TAM-024]`. Step 1 creates these IDs. Interviewer turns are `INT-nnn` in every call, so outside a single persona's extract cite them with the call, like `INT-025 (TAM)`. If a claim has no ID, it's an interpretation and must be labelled `Interpretation:`. If neither, delete it.
 - **Raw stays raw.** Never edit files in `raw/`. Quotes get checked against `out/01-*` and, when in doubt, against `raw/`.
 - **Verbatim means verbatim.** Quotes are copied from the merged transcript. Don't tidy grammar inside quote marks. Quote marks mean verbatim speech from a merged transcript or the brief and nothing else: name sections, labels and product copy in plain text or code formatting.
 - **Hedges are data.** "I guess", "maybe half, maybe less", "mostly on top" carry meaning. Keep them in quotes and notice them.

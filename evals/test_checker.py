@@ -202,6 +202,31 @@ class TestPlantedDefects(Case):
         p.write_text(p.read_text().replace("out/05-scope.md: recut", "out/99-missing.md: recut", 1))
         self.assertEqual(self.status("B17").status, "fail")
 
+    def test_prompted_pain_above_one_fails(self):
+        self.edit("out/02-extract-ANN.md", "| unprompted | 3 |", "| prompted (INT-001, leading) | 3 |")
+        self.assertEqual(self.status("B18").status, "fail")
+        self.edit("out/02-extract-ANN.md", "| prompted (INT-001, leading) | 3 |", "| prompted (INT-001, leading) | 1 |")
+        self.assertEqual(self.status("B18").status, "pass")
+
+    def test_topic_prompted_is_not_capped(self):
+        self.edit("out/02-extract-ANN.md", "| unprompted | 3 |", "| topic-prompted (INT-001) | 3 |")
+        self.assertEqual(self.status("B18").status, "pass")
+
+    def test_interviewer_id_in_two_calls_needs_a_call_code_outside_its_extract(self):
+        # a second call whose interviewer turn shares the ID INT-003
+        (self.root / "out" / "01-merged-BOB.md").write_text("[INT-001] 00:00:01 Hello Bob.\n[BOB-002] 00:00:02 Hi.\n[INT-003] 00:00:05 Another question entirely.\n[BOB-004] 00:00:09 An answer.\n")
+        p = self.root / "out" / "04-problem.md"
+        p.write_text(p.read_text().replace("[ANN-004].", "[ANN-004] and the question [INT-003]."))
+        self.assertEqual(self.status("A3").status, "fail")
+        p.write_text(p.read_text().replace("[INT-003]", "[INT-003 (ANN)]"))
+        self.assertEqual(self.status("A3").status, "pass")
+        p.write_text(p.read_text().replace("[INT-003 (ANN)]", "[INT-003] (ANN)"))
+        self.assertEqual(self.status("A3").status, "pass")
+        # in the persona's own extract a bare ID resolves to its own call
+        e = self.root / "out" / "02-extract-ANN.md"
+        e.write_text(e.read_text().replace("## Silences\nNever mentioned cost.", "## Silences\nNever mentioned cost. The question INT-003 asked about lateness."))
+        self.assertEqual(self.status("A3").status, "pass")
+
     def test_critique_must_state_independence(self):
         (self.root / "out" / "07-critique.md").write_text("# Critique\n## Verdict\nok\n")
         self.assertEqual(self.status("B16").status, "fail")

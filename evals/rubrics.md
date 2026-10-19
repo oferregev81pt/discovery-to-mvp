@@ -38,6 +38,7 @@ A step passes when every `must` criterion passes and at least 80% of `should` cr
 | 2.7 | should | Business consequence says `none named` where nobody named one, and does not infer one from tone |
 | 2.10 | should | The Who section gives the recorded length of the call and how it was captured, and does not use the booked slot |
 | 2.11 | must | A pain scored 3 on a consequence names an event (who, what, when). A habit with no workaround or named cost is not scored above 2 |
+| 2.12 | must | A pain raised only in answer to a leading question is scored 1, whatever else the evidence says |
 | 2.9 | should | Recent changes (triggers) are listed with IDs, or say none named; nothing is inferred |
 | 2.8 | should | Silences include something the workflow obviously has, such as who enters the credit, with whether it was asked |
 
@@ -124,6 +125,7 @@ Run the audit on a copy of a good run after planting defects, and check it finds
 
 | id | planted defect | audit check that must catch it |
 |---|---|---|
+| 10.7 | a slide number whose source is hedged ("until 1:30" for "until one, sometimes 1:30") | 22, and the numbers table in the report |
 | 10.1 | change one quote so a hedge is dropped | 4 |
 | 10.2 | replace one ID with a number that does not exist | 3 |
 | 10.3 | edit a file in `raw/` | 1 |

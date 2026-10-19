@@ -121,14 +121,41 @@ def table_rows(body: str) -> list[list[str]]:
     return rows[1:] if rows else []  # drop header
 
 
-def load_turns(root: Path) -> dict[str, str]:
-    turns: dict[str, str] = {}
+def load_calls(root: Path) -> dict[str, dict[str, str]]:
+    """{call code: {turn ID: text}}. The code is the file's suffix: out/01-merged-<CODE>.md."""
+    calls: dict[str, dict[str, str]] = {}
     for f in glob(root, "out/01-merged-*.md"):
+        code = f.stem.rsplit("-", 1)[-1]
         for ln in read(f).splitlines():
             m = TURN_RE.match(ln.strip())
             if m:
-                turns[m.group(1)] = m.group(2)
+                calls.setdefault(code, {})[m.group(1)] = m.group(2)
+    return calls
+
+
+def load_turns(root: Path) -> dict[str, str]:
+    turns: dict[str, str] = {}
+    for call in load_calls(root).values():
+        turns.update(call)
     return turns
+
+
+CITE_RE = re.compile(r"\b([A-Z]{2,5})-(\d{3})(?:\]?\s*\(([A-Z]{2,5})\))?")  # INT-025 (TAM) or [INT-025] (TAM)
+
+
+def resolve(calls: dict[str, dict[str, str]], tid: str, code: str | None, fname: str) -> tuple[list[str], bool]:
+    """Texts a cited turn ID can mean, and whether the citation is ambiguous.
+
+    An interviewer ID such as INT-025 exists in every call. It is resolved by an explicit
+    call code, "INT-025 (TAM)", or by the persona extract it is cited in; anywhere else it
+    is ambiguous when more than one call has it."""
+    have = {c: v[tid] for c, v in calls.items() if tid in v}
+    if code and code in have:
+        return [have[code]], False
+    m = re.match(r"02-extract-([A-Z]+)", fname)
+    if m and m.group(1) in have:
+        return [have[m.group(1)]], False
+    return list(have.values()), len(have) > 1
 
 
 def output_files(root: Path) -> list[Path]:
@@ -169,27 +196,31 @@ def check_headings(root: Path) -> Result:
     return Result("A2 required sections", "fail" if missing else "pass", f"{seen} files", missing)
 
 
-def check_ids(root: Path, turns: dict[str, str]) -> Result:
-    if not turns:
+def check_ids(root: Path, calls: dict[str, dict[str, str]]) -> Result:
+    if not calls:
         return Result("A3 turn IDs resolve", "n/a", "no merged transcripts")
-    prefixes = {i.split("-")[0] for i in turns}
-    orphans, total = [], 0
+    prefixes = {i.split("-")[0] for c in calls.values() for i in c}
+    problems, total = [], 0
     for f in output_files(root):
         for n, ln in enumerate(read(f).splitlines(), 1):
-            for m in ID_RE.finditer(ln):
+            for m in CITE_RE.finditer(ln):
                 if m.group(1) not in prefixes:
                     continue
+                tid = f"{m.group(1)}-{m.group(2)}"
                 total += 1
-                if m.group(0) not in turns:
-                    orphans.append(f"{f.name}:{n} {m.group(0)}")
-    return Result("A3 turn IDs resolve", "fail" if orphans else "pass",
-                  f"{total} IDs, {total - len(orphans)} resolve", orphans)
+                texts, ambiguous = resolve(calls, tid, m.group(3), f.name)
+                if not texts:
+                    problems.append(f"{f.name}:{n} {tid} does not exist")
+                elif ambiguous:
+                    problems.append(f"{f.name}:{n} {tid} is in more than one call; cite it as {tid} (<call code>)")
+    return Result("A3 turn IDs resolve", "fail" if problems else "pass",
+                  f"{total} IDs checked", problems)
 
 
-def check_quotes(root: Path, turns: dict[str, str]) -> Result:
-    if not turns:
+def check_quotes(root: Path, calls: dict[str, dict[str, str]]) -> Result:
+    if not calls:
         return Result("A4 quotes verbatim", "n/a", "no merged transcripts")
-    prefixes = {i.split("-")[0] for i in turns}
+    prefixes = {i.split("-")[0] for c in calls.values() for i in c}
     brief = root / "context" / "brief.md"
     brief_text = norm(read(brief)) if brief.exists() else ""  # quoting the brief is allowed
     bad, total = [], 0
@@ -199,10 +230,12 @@ def check_quotes(root: Path, turns: dict[str, str]) -> Result:
             # so a quoted label next to an ID in another cell is not taken for speech.
             units = ln.strip().strip("|").split("|") if ln.lstrip().startswith("|") else [ln]
             for unit in units:
-                ids = [m.group(0) for m in ID_RE.finditer(unit) if m.group(1) in prefixes]
-                if not ids:
+                cites = [(f"{m.group(1)}-{m.group(2)}", m.group(3)) for m in CITE_RE.finditer(unit) if m.group(1) in prefixes]
+                if not cites:
                     continue
-                haystacks = [norm(turns[i]) for i in ids if i in turns]
+                haystacks = []
+                for tid, code in cites:
+                    haystacks += [norm(x) for x in resolve(calls, tid, code, f.name)[0]]
                 if not haystacks:
                     continue
                 haystacks.append(brief_text)
@@ -213,7 +246,7 @@ def check_quotes(root: Path, turns: dict[str, str]) -> Result:
                             continue
                         total += 1
                         if not any(nf in h for h in haystacks):
-                            bad.append(f"{f.name}:{n} \"{frag.strip()[:70]}\" not in {','.join(ids)}")
+                            bad.append(f"{f.name}:{n} \"{frag.strip()[:70]}\" not in {','.join(c[0] for c in cites)}")
     return Result("A4 quotes verbatim", "fail" if bad else "pass",
                   f"{total} quote fragments checked", bad)
 
@@ -311,6 +344,35 @@ def check_changed_files(root: Path) -> Result:
                 problems.append(f"{title}: names {pth}, which does not exist")
     return Result("B17 log names changed files", "fail" if problems else "pass",
                   f"{n} entries claim a change", problems)
+
+
+def check_prompted_cap(root: Path) -> Result:
+    """A pain raised only in answer to a leading question scores 1 at most."""
+    files = glob(root, "out/02-extract-*.md")
+    if not files:
+        return Result("B18 prompted pains capped at 1", "n/a", "no extracts")
+    problems, rows = [], 0
+    for f in files:
+        body = section(read(f), "Pains") or ""
+        lines = [ln for ln in body.splitlines() if ln.strip().startswith("|")]
+        if not lines:
+            continue
+        head = [c.strip().lower() for c in lines[0].strip().strip("|").split("|")]
+        try:
+            ip = next(i for i, c in enumerate(head) if c.startswith("prompted"))
+            isv = next(i for i, c in enumerate(head) if c.startswith("severity"))
+        except StopIteration:
+            continue
+        for r in table_rows(body):
+            if len(r) <= max(ip, isv):
+                continue
+            rows += 1
+            prompted = r[ip].strip().lower()
+            leading = (prompted.startswith("prompted") or "leading" in prompted) and not prompted.startswith(("unprompted", "topic-prompted"))
+            sev = re.match(r"\d", r[isv].strip())
+            if leading and sev and int(sev.group(0)) > 1:
+                problems.append(f"{f.name}: pain {r[0]} is prompted by a leading question and scored {sev.group(0)}")
+    return Result("B18 prompted pains capped at 1", "fail" if problems else "pass", f"{rows} pains checked", problems)
 
 
 def check_independence(root: Path) -> Result:
@@ -456,12 +518,12 @@ def golden_checks(root: Path, golden: dict) -> list[Result]:
 # ---------------------------------------------------------------- driver
 
 def run(root: Path, golden: dict | None) -> list[Result]:
-    turns = load_turns(root)
+    calls = load_calls(root)
     res = [
-        check_raw(root), check_headings(root), check_ids(root, turns), check_quotes(root, turns),
+        check_raw(root), check_headings(root), check_ids(root, calls), check_quotes(root, calls),
         check_decisions(root), check_brief(root), check_problem(root), check_cutlist(root),
         check_stock_words(root), check_why_now(root), check_deck_test(root), check_independence(root),
-        check_changed_files(root),
+        check_changed_files(root), check_prompted_cap(root),
     ]
     if golden:
         res += golden_checks(root, golden)
