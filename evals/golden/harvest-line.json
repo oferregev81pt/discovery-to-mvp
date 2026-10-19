@@ -1,0 +1,61 @@
+{
+  "case": "examples/harvest-line",
+  "note": "Assertions derived from the planted traps in examples/harvest-line/raw. Patterns are case-insensitive regexes. scope 'turns' limits the search to numbered transcript lines, so merge notes may quote the wrong form. A pattern that is too strict is a bug in this file, not in the pipeline: loosen it and say why in the commit.",
+  "assertions": [
+    {"id": "s1-lime", "file": "out/01-merged-TAM*.md", "scope": "turns", "kind": "must_not_match", "pattern": "harvest lime", "why": "Zoom mangles 'Harvest Line' (glossary term)"},
+    {"id": "s1-all-of-an-ash", "file": "out/01-merged-TAM*.md", "scope": "turns", "kind": "must_not_match", "pattern": "all of an ash", "why": "Zoom mangles 'Olive & Ash'"},
+    {"id": "s1-ivy", "file": "out/01-merged-TAM*.md", "scope": "turns", "kind": "must_not_match", "pattern": "\\bIvy\\b", "why": "Zoom hears the sales rep Avi as 'Ivy'"},
+    {"id": "s1-flatly", "file": "out/01-merged-TAM*.md", "scope": "turns", "kind": "must_not_match", "pattern": "flatly parsley", "why": "glossary: flat-leaf parsley"},
+    {"id": "s1-meeze", "file": "out/01-merged-TAM*.md", "scope": "turns", "kind": "must_not_match", "pattern": "meeze", "why": "glossary: mise en place"},
+    {"id": "s1-sue-chef", "file": "out/01-merged-TAM*.md", "scope": "turns", "kind": "must_not_match", "pattern": "\\bSue chef\\b", "why": "glossary: sous-chef"},
+    {"id": "s1-fava", "file": "out/01-merged-TAM*.md", "scope": "turns", "kind": "must_not_match", "pattern": "fava beings", "why": "glossary: fava beans"},
+    {"id": "s1-energy-table", "file": "out/01-merged-TAM*.md", "scope": "turns", "kind": "must_not_match", "pattern": "energy table", "why": "meaning-changing error: real word, wrong word. Must be 'allergy table'"},
+    {"id": "s1-allergy-table", "file": "out/01-merged-TAM*.md", "scope": "turns", "kind": "must_match", "pattern": "allergy table", "why": "the fix itself must be present"},
+    {"id": "s1-leading-q-is-int", "file": "out/01-merged-TAM*.md", "scope": "turns", "kind": "must_match", "pattern": "^\\[INT-\\d{3}\\].*would an app where you could order", "why": "Otter fused the interviewer's leading question into Tamar's turn; it must be split out and attributed to INT"},
+    {"id": "s1-leading-q-not-tam", "file": "out/01-merged-TAM*.md", "scope": "turns", "kind": "must_not_match", "pattern": "^\\[TAM-\\d{3}\\].*would an app where you could order", "why": "same trap, other direction"},
+    {"id": "s1-top-pain-is-tam", "file": "out/01-merged-TAM*.md", "scope": "turns", "kind": "must_match", "pattern": "^\\[TAM-\\d{3}\\].*biggest problem is I don't know what's coming", "why": "Otter gives Tamar's biggest-problem answer to the interviewer; it is Tamar's"},
+    {"id": "s1-depends-is-tam", "file": "out/01-merged-TAM*.md", "scope": "turns", "kind": "must_match", "pattern": "^\\[TAM-\\d{3}\\].*Depends\\. If I can cook with it", "why": "Otter gives Tamar's answer to the interviewer at 1:52"},
+    {"id": "s1-johnny-bracketed", "file": "out/01-merged-TAM*.md", "scope": "turns", "kind": "must_match", "pattern": "\\[[^\\]]+\\]\\s+Johnny", "why": "'My [inaudible] Johnny' exists in one source only; whatever fills it must stay in brackets"},
+    {"id": "s1-coverage-logged", "file": "out/01-merged-TAM*.md", "kind": "must_match", "pattern": "single-source|coverage", "why": "Otter stops at 6:55 mid-sentence; the tail is single-source and must be logged"},
+    {"id": "s1-stockwise", "file": "out/01-merged-AVI*.md", "scope": "turns", "kind": "must_not_match", "pattern": "stock wise", "why": "glossary: Stockwise"},
+    {"id": "s1-pick-list", "file": "out/01-merged-AVI*.md", "scope": "turns", "kind": "must_not_match", "pattern": "the pickles", "why": "glossary: pick list"},
+    {"id": "s1-relay-gap-kept", "file": "out/01-merged-AVI*.md", "scope": "turns", "kind": "must_match", "pattern": "relay with a \\[", "why": "unrecoverable gap in a key sentence stays bracketed ([inaudible] or marked reconstruction)"},
+    {"id": "s1-hedge-kept", "file": "out/01-merged-AVI*.md", "scope": "turns", "kind": "must_match", "pattern": "Well\\. Maybe one a week", "why": "hedges are data: this is the stated-vs-revealed row for 'I never miss an order'"},
+
+    {"id": "s2-named-top-pain", "file": "out/02-extract-TAM*.md", "kind": "must_match", "pattern": "named top pain", "why": "the 'lottery every morning' answer is unprompted and must be flagged"},
+    {"id": "s2-leading-flagged", "file": "out/02-extract-TAM*.md", "kind": "must_match", "pattern": "would an app", "why": "the interviewer's leading question must be listed"},
+    {"id": "s2-evidence-folder", "file": "out/02-extract-TAM*.md", "kind": "must_match", "pattern": "evidence folder", "why": "the workaround that makes the credit pain a 3"},
+    {"id": "s2-400", "file": "out/02-extract-TAM*.md", "kind": "must_match", "pattern": "\\b400\\b", "why": "the only number with a cost attached"},
+    {"id": "s2-avi-never-miss", "file": "out/02-extract-AVI*.md", "kind": "must_match", "pattern": "never miss an order", "why": "stated vs revealed: 'never' then 'maybe one a week'"},
+    {"id": "s2-avi-relay", "file": "out/02-extract-AVI*.md", "kind": "must_match", "pattern": "relay|night typist", "why": "Avi's own biggest problem"},
+
+    {"id": "s3-silence-means-yes", "file": "out/03-collisions.md", "kind": "must_match", "pattern": "no answer means yes", "why": "same event, two stories: Avi's 'no answer means yes' vs Tamar asleep at 5 a.m."},
+    {"id": "s3-credit-unowned", "file": "out/03-collisions.md", "kind": "must_match", "pattern": "credit", "why": "workflow step nobody owns (driver, office, rep each point elsewhere)"},
+    {"id": "s3-menu-relay", "file": "out/03-collisions.md", "kind": "must_match", "pattern": "fava|menu", "why": "menu changes travel by voice note and may never reach purchasing"},
+
+    {"id": "s4-premise-contradicted", "file": "out/04-problem.md", "kind": "must_match", "pattern": "contradicted", "why": "the brief's 'build an ordering app' premise conflicts with the 8% portal and 'no new apps'"},
+    {"id": "s4-portal-evidence", "file": "out/04-problem.md", "kind": "must_match", "pattern": "8%", "why": "the evidence against the brief's framing"},
+    {"id": "s4-outcome-proposed", "file": "out/04-problem.md", "kind": "must_match", "pattern": "proposed", "why": "the brief names no business number; the step must propose one and mark it"},
+    {"id": "s4-statement-no-app", "file": "out/04-problem.md", "scope": "problem-statement", "kind": "must_not_match", "pattern": "\\b(app|portal|dashboard|platform|tool|bot)\\b", "why": "no solution words in the statement"},
+
+    {"id": "s5-whatsapp-entry", "file": "out/05-scope.md", "kind": "must_match", "pattern": "whatsapp", "why": "'if it's not in WhatsApp I won't use it' plus the failed portal"},
+    {"id": "s5-stockwise-constraint", "file": "out/05-scope.md", "kind": "must_match", "pattern": "stockwise", "why": "no API: the integration is a cut, with a reason"},
+    {"id": "s5-portal-cut", "file": "out/05-scope.md", "kind": "must_match", "pattern": "portal|ordering app", "why": "the brief's own solution appears in the cut list on the record"},
+    {"id": "s5-avi-stays", "file": "out/05-scope.md", "kind": "must_match", "pattern": "avi|sales rep|rep stays", "why": "constraint: reps stay in the loop; Tamar: no robot instead of Avi"},
+
+    {"id": "s6-mock-bite", "file": "out/06-prototype-brief.md", "kind": "must_match", "pattern": "plum", "why": "mock data should carry the cherry-to-plum substitution the chef actually hit"},
+    {"id": "s6-kill-signal", "file": "out/06-prototype-brief.md", "kind": "must_match", "pattern": "kill signal", "why": "a test that cannot fail is not a test"}
+  ],
+  "trails": [
+    {
+      "name": "Tamar's top pain (not knowing what's coming)",
+      "pattern": "lottery|what's coming|know before|before the (van|boxes|delivery)",
+      "files": ["out/02-extract-TAM*.md", "out/04-problem.md", "out/05-scope.md", "out/06-prototype-brief.md", "out/07-critique.md"]
+    },
+    {
+      "name": "Avi as the relay",
+      "pattern": "relay|night typist|retyp",
+      "files": ["out/02-extract-AVI*.md", "out/03-collisions.md", "out/04-problem.md", "out/05-scope.md"]
+    }
+  ]
+}

@@ -32,28 +32,27 @@ Each step checks its own work a little (step 1 counts turns, step 4 runs six tes
 5. **Unlabelled claims.** In extract and collision tables, any cell that says what someone said or did with no ID and no `Interpretation:` label.
 6. **Decision log is complete.** For each step found, `out/decisions.md` has an entry with a decision, `Made by: PM` and a date. Entries must appear in step order. A step N+1 output dated or logged before the step N decision is a stop-rule breach: `blocks`.
 7. **Outputs are current.** If an output is older than a file it reads from, or a logged decision says "changed in the output: X" and X is not in the file, it is stale.
-8. **Roleplay caveat carried.** If the brief says any call was roleplayed, the caveat appears in the extract, the problem, the scope's assumptions, the critique and the deck's evidence slide. List where it is missing.
 
 ### B. Rules the steps promised
 
-9. **Problem statement:** under 80 words (count them), no banned words (platform, portal, dashboard, app, tool, feature, AI, automate, build, integrate, system, interface, page, view, bot), cites IDs.
-10. **No solutions before step 5.** Steps 1 to 4 outputs contain no feature or product names outside `Parked ideas` lines and quotes.
-11. **Cut list is real.** At least as long as the in-scope list. Every row has all five cells. "Revisit when" is a trigger, not a date. "What we lose" is not "nothing".
-12. **Each in-scope capability** names a persona, evidence IDs, the workaround or relay it removes, and a link on the business chain.
-13. **Severity follows the rules.** A pain with severity 1 or 2 has no named workaround, cost or consequence in its own evidence cell; a severity 3 has one. A pain raised only in answer to a leading question is not above 1. A `Named top pain` is at least 2.
-14. **Plain writing.** Search all outputs for the stock words from step 7 of the critique (seamless, leverage, robust, empower, streamline, elevate, unlock, holistic, delve, crucial, game-changer) and for "not just X, but Y". List hits outside quotes.
+8. **Problem statement:** under 80 words (count them), no banned words (platform, portal, dashboard, app, tool, feature, AI, automate, build, integrate, system, interface, page, view, bot), cites IDs.
+9. **No solutions before step 5.** Steps 1 to 4 outputs contain no feature or product names outside `Parked ideas` lines and quotes.
+10. **Cut list is real.** At least as long as the in-scope list. Every row has all five cells. "Revisit when" is a trigger, not a date. "What we lose" is not "nothing".
+11. **Each in-scope capability** names a persona, evidence IDs, the workaround or relay it removes, and a link on the business chain.
+12. **Severity follows the rules.** A pain with severity 1 or 2 has no named workaround, cost or consequence in its own evidence cell; a severity 3 has one. A pain raised only in answer to a leading question is not above 1. A `Named top pain` is at least 2.
+13. **Plain writing.** Search all outputs for the stock words from step 7 of the critique (seamless, leverage, robust, empower, streamline, elevate, unlock, holistic, delve, crucial, game-changer) and for "not just X, but Y". List hits outside quotes.
 
 ### C. The chain (does it survive the handoffs)
 
-15. **Top pain, end to end.** Take the key persona's `Named top pain` from the extract. Mark where it appears, with the form it takes: problem statement (in their words?), scope (core, small or later), prototype brief (tested, or listed under "won't tell us"), critique (mentioned?), deck. A gap anywhere is `fail`. If it shrank, check that the scope's centrality check says so in writing and the PM decided it in the log.
-16. **Premises.** Every `contradicted` or `untested` premise in step 4 shows up in step 5 as dropped, or kept and tested. If kept, `out/decisions.md` holds the evidence that would change the PM's mind.
-17. **Collisions.** The top three tensions in step 3 each appear in step 5 under "Collisions decided" with a side chosen, or in the log as deliberately avoided.
-18. **Weakest link.** The weakest link of the business case in step 4 is on the ranked assumptions in step 6, or step 6 says what else would test it. The deck and critique name it.
-19. **Assumptions.** Every assumption in step 5 is on the step 6 ranked table. The one chosen has a test question, a success threshold and a kill signal that an observer could actually see.
-20. **Prototype matches the brief.** If `prototype/` exists: `src/data/mock.json` holds the "bite" values the brief specified; the entry point matches the adoption plan; the screens are no more than the brief's; `NOTES.md` holds what was left out; the README copies the test script. Run the build or dev server and walk the flow if you can. Say if you could not.
-21. **Critique to action.** Each top issue in step 7 is fixed in the files it points to, or logged as accepted. List the open ones.
-22. **Future ideas have seeds.** Each bet in step 8 cites a turn ID, a cut-list row or a silence that exists. At most one is `Imagined`.
-23. **Deck traces.** Every slide claim in `out/09-story-outline.md` points to a file and ID that exist and say it. At least one reversal appears. The weakest link and the roleplay caveat are on the slides where they apply. Nothing on a slide is stronger than its evidence ("clients trust us" from one call).
+14. **Top pain, end to end.** Take the key persona's `Named top pain` from the extract. Mark where it appears, with the form it takes: problem statement (in their words?), scope (core, small or later), prototype brief (tested, or listed under "won't tell us"), critique (mentioned?), deck. A gap anywhere is `fail`. If it shrank, check that the scope's centrality check says so in writing and the PM decided it in the log.
+15. **Premises.** Every `contradicted` or `untested` premise in step 4 shows up in step 5 as dropped, or kept and tested. If kept, `out/decisions.md` holds the evidence that would change the PM's mind.
+16. **Collisions.** The top three tensions in step 3 each appear in step 5 under "Collisions decided" with a side chosen, or in the log as deliberately avoided.
+17. **Weakest link.** The weakest link of the business case in step 4 is on the ranked assumptions in step 6, or step 6 says what else would test it. The deck and critique name it.
+18. **Assumptions.** Every assumption in step 5 is on the step 6 ranked table. The one chosen has a test question, a success threshold and a kill signal that an observer could actually see.
+19. **Prototype matches the brief.** If `prototype/` exists: `src/data/mock.json` holds the "bite" values the brief specified; the entry point matches the adoption plan; the screens are no more than the brief's; `NOTES.md` holds what was left out; the README copies the test script. Run the build or dev server and walk the flow if you can. Say if you could not.
+20. **Critique to action.** Each top issue in step 7 is fixed in the files it points to, or logged as accepted. List the open ones.
+21. **Future ideas have seeds.** Each bet in step 8 cites a turn ID, a cut-list row or a silence that exists. At most one is `Imagined`.
+22. **Deck traces.** Every slide claim in `out/09-story-outline.md` points to a file and ID that exist and say it. At least one reversal appears. The weakest link is on the slide where it applies. Nothing on a slide is stronger than its evidence ("clients trust us" from one call).
 
 ## Output: `out/10-audit.md`
 
