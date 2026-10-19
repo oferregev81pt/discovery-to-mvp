@@ -58,17 +58,25 @@ If any calls were roleplayed, every later step says so in its caveats, and the f
    ```
 5. **Apply the decision** to the step's output file before moving on (for example, re-cut the scope after pushback). Then continue to the next step.
 
-There is no unattended mode. If nobody is there to answer (a scheduled run, or the user stepped away), finish the current step, post its results and questions, and stop. The next step waits for a person. Never deploy anything without the user.
+There is no unattended mode by default. If nobody is there to answer (a scheduled run, or the user stepped away), finish the current step, post its results and questions, and stop. The next step waits for a person. Never deploy anything without the user.
+
+**Delegated run.** If the PM says in chat to run without asking ("run the rest without asking me", "take your recommendations"), that is an instruction, and it is the only way past a stop. Then:
+- Show each step's results in the chat anyway, take your own marked recommendation at each checkpoint, and keep going.
+- Log every such entry as `Made by: PM (delegated: "<their words>")`, write "the model took its own recommendation" in the Why line, and never write plain `PM`. A delegated entry is not evidence that the PM decided; the audit counts them.
+- Still stop before anything outward-facing: deploying, sharing, sending, publishing beyond a private page, spending money. Delegation covers the decisions, not those.
+- Don't invent the PM's reasons. Where a skill asks the PM for a reason (such as what evidence would change their mind about a premise), write `not asked (delegated run)`.
+- Step 9's outline-approval stop is waived the same way and logged.
+- It covers the steps in front of it, and ends when the PM sends any message that changes the plan.
 
 ## Rules that hold across every step
 
 - **Traceability.** Every claim about what a person said or experienced carries a turn ID from a merged transcript, like `[TAM-024]`. Step 1 creates these IDs. If a claim has no ID, it's an interpretation and must be labelled `Interpretation:`. If neither, delete it.
 - **Raw stays raw.** Never edit files in `raw/`. Quotes get checked against `out/01-*` and, when in doubt, against `raw/`.
-- **Verbatim means verbatim.** Quotes are copied from the merged transcript. Don't tidy grammar inside quote marks.
+- **Verbatim means verbatim.** Quotes are copied from the merged transcript. Don't tidy grammar inside quote marks. Quote marks mean verbatim speech from a merged transcript or the brief and nothing else: name sections, labels and product copy in plain text or code formatting.
 - **Hedges are data.** "I guess", "maybe half, maybe less", "mostly on top" carry meaning. Keep them in quotes and notice them.
 - **No solutions before step 5.** Steps 1 to 4 describe people and problems. If a solution idea comes up early, park it in a `Parked ideas` line at the end of the file; step 5 picks them up.
 - **Start from the why, and challenge your own starting point.** The brief's premises (what the team believes about the customer, which number should move) get checked against the evidence in step 4, and again whenever a later step finds something that contradicts them. When the evidence contradicts a premise, say so at once and offer to change the plan, before anyone has to push. If the PM defends a premise, ask what evidence would change their mind, and write the answer in `out/decisions.md`.
-- **The customer's own biggest complaint is the spine, not a field.** Whatever the key persona names unprompted as their biggest problem has to appear in the problem statement and as a core capability of v1, or the scope has to say in writing why it doesn't and what would test it properly.
+- **The customer's own biggest complaint is the spine, not a field.** Whatever each persona names unprompted as their biggest problem (`Named top pain`) has to be handled on the record. The **key persona** is the user or buyer whose use decides whether v1 works. The brief names them; if it doesn't, ask the PM at the step 2 checkpoint and log the answer. The key persona's top pain has to appear in the problem statement and as a core capability of v1, or the scope has to say in writing why it doesn't and what would test it properly. Another persona's top pain is either addressed, or the scope says in writing what v1 leaves unaddressed and why, and the PM decides.
 - **Why, why now, fit.** Whatever argues for a direction answers three questions in order: why this problem (who, what it costs, which number), why now (what triggers it, labelled evidence, brief or assumption), and how the solution fits the needs (need by need, with the gaps shown). Steps 2 to 5 produce the material and step 9 presents it.
 - **The model proposes, the PM decides.** Each step ends with options and a recommendation, never a verdict, and the pipeline can't move until the PM answers. The decision log is the evidence of who decided.
 - **Plain writing.** Outputs are read by people. Short sentences, concrete nouns, no filler ("leverage", "seamless", "robust", "it's important to note"). Numbers over adjectives.

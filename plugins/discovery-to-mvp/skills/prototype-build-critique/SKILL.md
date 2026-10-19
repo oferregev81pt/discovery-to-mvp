@@ -28,7 +28,7 @@ Phase A ends with a stop: show the results and ask (see the end of this file) wh
 
 ## Phase B — Critique
 
-Run this in a fresh context when possible: a subagent, or a new session, given only the files listed in Inputs plus the running prototype. It shouldn't see the build conversation.
+Run this in a fresh context when possible: a subagent, or a new session, given only the files listed in Inputs plus the running prototype. It shouldn't see the build conversation. If neither is available, run it anyway and put `Not run in a fresh context.` as the first line of `out/07-critique.md`; the review will be gentler than an independent one, and the line says so.
 
 Take the role of a head of product who has to approve this work and has ten minutes. Be specific and unsentimental. Praise only what deserves it, in one line.
 
@@ -55,6 +55,7 @@ Check, in this order:
 
 ```
 # Critique
+<If not run in a fresh context, one line saying so.>
 ## Verdict
 Two sentences: would you approve this to go to a client test, and the single biggest reason.
 ## Top issues (ranked)
@@ -73,7 +74,7 @@ Limit top issues to five. If there are more, the extra ones go in a short "also"
 
 ## Stop here: show the results and ask how to continue
 
-This step always ends with a stop, including when it runs inside a full pipeline or the user said "run everything". Never start the next step, and never apply a decision, until the user answers.
+This step always ends with a stop, including when it runs inside a full pipeline or the user said "run everything". Never start the next step, and never apply a decision, until the user answers. The one exception is a delegated run, as the orchestrator defines it: show the results, log the delegated decision and continue.
 
 1. **Show the results in the chat**, not only the file path: after phase A: how to run the prototype and a short walk through the flow as built; after phase B: the verdict, the top issues table and the rewritten "why". Then say where the full file is.
 2. **Ask the decisions below.** Give your recommended answer for each, clearly marked as a recommendation.

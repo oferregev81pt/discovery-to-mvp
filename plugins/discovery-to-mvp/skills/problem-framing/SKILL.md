@@ -46,7 +46,7 @@ Run each check and write pass/fail with a line of reasoning:
 - **Not a feature in disguise:** you can name at least two different solutions that would solve it.
 - **Explains the workarounds:** the shadow spreadsheets, DMs and relays from step 2 make sense if this problem is true.
 - **Explains the silences:** the things nobody mentioned are consistent with it.
-- **Names the key persona's top pain:** if any extract has a `Named top pain`, the statement covers it, in that person's words. If it doesn't, write why, and treat this check as failed until the PM agrees.
+- **Names every Named top pain:** for each extract with a `Named top pain`, the statement covers it, in that person's words. If one can't fit, write which is dropped and why, and treat this check as failed until the PM agrees. The key persona's (see the orchestrator) can't be the one dropped.
 
 ### 5. Reject the alternatives, in writing
 For each of the other two framings: why it's tempting and why you'd reject it (or keep it as a fallback). Cite evidence. "The brief's framing would produce an ordering app; the vendor already built a web portal that 8% of customers used [AVI-031], and the customer asked for no new apps [TAM-036]."
@@ -94,7 +94,7 @@ Parked ideas: ...
 
 ## Stop here: show the results and ask how to continue
 
-This step always ends with a stop, including when it runs inside a full pipeline or the user said "run everything". Never start the next step, and never apply a decision, until the user answers.
+This step always ends with a stop, including when it runs inside a full pipeline or the user said "run everything". Never start the next step, and never apply a decision, until the user answers. The one exception is a delegated run, as the orchestrator defines it: show the results, log the delegated decision and continue.
 
 1. **Show the results in the chat**, not only the file path: the premise audit (contradicted premises first), the brief's framing, the proposed problem statement with its word count, the checks table, each rejected framing in one line, and the business case with its weakest link. Then say where the full file is.
 2. **Ask the decisions below.** Give your recommended answer for each, clearly marked as a recommendation.

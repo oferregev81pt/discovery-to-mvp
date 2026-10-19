@@ -38,7 +38,9 @@ A candidate is **in v1** only if it passes all of these:
 
 Where a top collision forces a choice, make it, and write which side v1 favors and why.
 
-**Centrality check.** Take the key persona's `Named top pain` from the extracts. It has to be one of the core capabilities of v1, with the effort and depth to actually address it. If it appears only as a small field, a label or a "later", stop and decide on the record: (a) promote it to the core and cut something else, or (b) keep it small and write what the small version cannot prove (for example, "a one-line reason tells us whether clients read it, not whether they understand why the concept was built"). Never shrink the customer's biggest complaint to make room for the easiest-to-build items without saying so in the "Collisions decided" or "Argue with me" section.
+**Re-check step 3's defaults.** The defaults the PM accepted at step 3 are provisional until they pass these rules. For each, run rules 1 to 7 on the capability it implies. If one fails (it sits on no link of the business chain, or depends on data the team doesn't have), say so before locking the scope and ask the PM whether to keep the default or reverse it.
+
+**Centrality check.** Take each persona's `Named top pain` from the extracts. The key persona's (see the orchestrator) has to be one of the core capabilities of v1, with the effort and depth to actually address it. If it appears only as a small field, a label or a "later", stop and decide on the record: (a) promote it to the core and cut something else, or (b) keep it small and write what the small version cannot prove (for example, "a one-line reason tells us whether clients read it, not whether they understand why the concept was built"). Never shrink the customer's biggest complaint to make room for the easiest-to-build items without saying so in the "Collisions decided" or "Argue with me" section. Any other persona's Named top pain is either addressed by a capability or written here as unaddressed, with the reason and what that costs; it does not get to disappear.
 
 **Rank by evidence and outcome, not just pain score.** Operational pains (relays, lost requests) score high because they leave workarounds. Confidence pains (not understanding why, feeling it's random) leave none. Before locking the in-scope list, look at the ranking once without the severity scores and ask which capability moves the business outcome the most. If that differs from the severity order, say so.
 
@@ -46,7 +48,7 @@ Where a top collision forces a choice, make it, and write which side v1 favors a
 - **One sentence**: who does what, where, and what changes for them.
 - **In scope**: 3 to 6 capabilities, each with persona served, evidence IDs, and the workaround or relay it removes.
 - **v1 does not**: explicit list, in plain sentences. "v1 does not show performance data." "v1 does not replace the account manager's message."
-- **What v1 is the first step of**: two sentences on where it leads, taken from `out/08-future-ideas.md` if that step has run, otherwise from the business case. A v1 with no direction reads as a fix for the current process. Write which parts of today's cut list are the next steps along that direction.
+- **What v1 is the first step of**: two sentences on where it leads, taken from the business case (step 8 runs later; if it has already run, from `out/08-future-ideas.md`). After step 8, offer to update this section to match its position. A v1 with no direction reads as a fix for the current process. Write which parts of today's cut list are the next steps along that direction.
 
 ### 4. Write the cut list
 Every candidate not in v1 goes here. The cut list should be at least as long as the in-scope list; if it isn't, you haven't considered enough.
@@ -101,7 +103,7 @@ Named top pain: ... / Where it sits in v1: core | small | later / If small, what
 
 ## Stop here: show the results and ask how to continue
 
-This step always ends with a stop, including when it runs inside a full pipeline or the user said "run everything". Never start the next step, and never apply a decision, until the user answers.
+This step always ends with a stop, including when it runs inside a full pipeline or the user said "run everything". Never start the next step, and never apply a decision, until the user answers. The one exception is a delegated run, as the orchestrator defines it: show the results, log the delegated decision and continue.
 
 1. **Show the results in the chat**, not only the file path: v1 in one sentence, the in-scope table, the centrality check, the full cut list table and the "Argue with me" items. Then say where the full file is.
 2. **Ask the decisions below.** Give your recommended answer for each, clearly marked as a recommendation.

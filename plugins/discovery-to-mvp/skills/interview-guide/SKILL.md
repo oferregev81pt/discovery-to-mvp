@@ -77,7 +77,7 @@ Keep it to two pages. An interviewer has to be able to glance at it mid-call.
 
 ## Stop here: show the results and ask how to continue
 
-This step always ends with a stop, including when it runs inside a full pipeline or the user said "run everything". Never start the next step, and never apply a decision, until the user answers.
+This step always ends with a stop, including when it runs inside a full pipeline or the user said "run everything". Never start the next step, and never apply a decision, until the user answers. The one exception is a delegated run, as the orchestrator defines it: show the results, log the delegated decision and continue.
 
 1. **Show the results in the chat**, not only the file path: the business and customer outcome lines, the beliefs-to-break table, the learning goals table and the first three questions for each persona. Then say where the full file is.
 2. **Ask the decisions below.** Give your recommended answer for each, clearly marked as a recommendation.

@@ -77,7 +77,7 @@ Idea / Why nobody asked / Seed [IDs] / Customer value / Company value / What mus
 
 ## Stop here: show the results and ask how to continue
 
-This step always ends with a stop, including when it runs inside a full pipeline or the user said "run everything". Never start the next step, and never apply a decision, until the user answers.
+This step always ends with a stop, including when it runs inside a full pipeline or the user said "run everything". Never start the next step, and never apply a decision, until the user answers. The one exception is a delegated run, as the orchestrator defines it: show the results, log the delegated decision and continue.
 
 1. **Show the results in the chat**, not only the file path: the position paragraph, the path table, the bets in one line each with their seeds, and the "say it in the room" lines. Then say where the full file is.
 2. **Ask the decisions below.** Give your recommended answer for each, clearly marked as a recommendation.

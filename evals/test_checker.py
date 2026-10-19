@@ -161,6 +161,19 @@ class TestPlantedDefects(Case):
         self.edit("out/02-extract-ANN.md", "## Recent changes (triggers)", "## Something else")
         self.assertEqual(self.status("A2").status, "fail")
 
+    def test_delegated_entries_are_counted(self):
+        p = self.root / "out" / "decisions.md"
+        p.write_text(p.read_text().replace("- Made by: PM", "- Made by: PM (delegated: \"run the rest\")", 1))
+        r = self.status("A6")
+        self.assertEqual(r.status, "pass")
+        self.assertIn("delegated", r.detail)
+
+    def test_critique_must_state_independence(self):
+        (self.root / "out" / "07-critique.md").write_text("# Critique\n## Verdict\nok\n")
+        self.assertEqual(self.status("B16").status, "fail")
+        (self.root / "out" / "07-critique.md").write_text("# Critique\nNot run in a fresh context.\n## Verdict\nok\n")
+        self.assertEqual(self.status("B16").status, "pass")
+
     def test_raw_edit_detected(self):
         cp.main.__globals__["sys"].argv = ["x", str(self.root), "--snapshot-raw"]
         self.assertEqual(cp.main(), 0)

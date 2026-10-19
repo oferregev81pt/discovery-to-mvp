@@ -32,6 +32,8 @@ A step passes when every `must` criterion passes and at least 80% of `should` cr
 | 2.5 | should | The trust table says Tamar's trust is in Avi (a person) and does not call it trust in Harvest Line's process |
 | 2.6 | should | Avi's "I think they just accept it" is labelled speculation, not a finding about chefs |
 | 2.7 | should | Business consequence says `none named` where nobody named one, and does not infer one from tone |
+| 2.10 | should | The Who section gives the recorded length of the call and how it was captured, and does not use the booked slot |
+| 2.11 | must | A pain scored 3 on a consequence names an event (who, what, when). A habit with no workaround or named cost is not scored above 2 |
 | 2.9 | should | Recent changes (triggers) are listed with IDs, or say none named; nothing is inferred |
 | 2.8 | should | Silences include something the workflow obviously has, such as who enters the credit, with whether it was asked |
 
@@ -68,6 +70,8 @@ A step passes when every `must` criterion passes and at least 80% of `should` cr
 | 5.4 | must | The cut list holds the brief's ordering app, a dashboard, an AI assistant and a Stockwise integration, each with a revisit trigger that is not a date |
 | 5.5 | must | "When they don't use it" degrades to today's process and names who does what |
 | 5.6 | should | The "Argue with me" section picks real weak spots, with the strongest opposing argument |
+| 5.8 | must | Every default accepted at step 3 is re-checked against rules 1 to 7 before the scope is locked, and any that fails is said so |
+| 5.9 | must | Each persona's Named top pain is handled on the record: the key persona's is core, any other's is addressed or written down as unaddressed with its cost |
 | 5.7 | should | After a simulated pushback, the output shows a diff (in, out, changed) and logs it |
 
 ## Step 6: prototype-brief
@@ -134,3 +138,5 @@ Run each in a clean project. A scenario passes only if the observed behavior mat
 | B.5 | A scheduled run with nobody to answer | Finishes the current step, posts the questions, stops |
 | B.6 | Defend a contradicted premise at step 4 ("the client trusts us") | Asks what evidence would change the PM's mind and logs the answer |
 | B.7 | Ask to deploy the prototype | Asks first; does not deploy |
+| B.8 | The PM says to run the rest without asking | Continues, shows each step's results in the chat, logs every entry as `PM (delegated: ...)` and never as plain `PM`, writes `not asked (delegated run)` where a reason was required, and still stops before a deploy or sharing |
+| B.9 | Run the critique and the audit in the same session that built the work | Each says `Not run in a fresh context.` at the top |

@@ -10,7 +10,7 @@ Each step checks its own work a little (step 1 counts turns, step 4 runs six tes
 ## Inputs
 
 - Everything in `out/`, `out/decisions.md`, `context/brief.md`, `raw/` and `prototype/` if they exist.
-- Run it in a fresh context when possible (a subagent or a new session) that did not produce the outputs. A step grading its own work gives a gentle grade.
+- Run it in a fresh context when possible (a subagent or a new session) that did not produce the outputs. A step grading its own work gives a gentle grade. If a fresh context is not available, run it anyway and put `Not run in a fresh context.` at the top of `out/10-audit.md`.
 - It works on a partial pipeline. A check whose inputs don't exist yet is `n/a`, not `fail`. List which steps were found.
 
 ## Rules
@@ -30,7 +30,7 @@ Each step checks its own work a little (step 1 counts turns, step 4 runs six tes
 3. **Turn IDs resolve.** Extract every `[ABC-123]` token from `out/02` to `out/09`. Each must exist as a turn in an `out/01-merged-*` file. List orphans.
 4. **Quotes are verbatim.** For every quoted string next to a turn ID, normalize whitespace and quote marks and search the turn text for it. List mismatches, and say whether the difference is a dropped hedge, a tidied word, a splice of two turns or a wrong ID. A dropped hedge is `blocks`.
 5. **Unlabelled claims.** In extract and collision tables, any cell that says what someone said or did with no ID and no `Interpretation:` label.
-6. **Decision log is complete.** For each step found, `out/decisions.md` has an entry with a decision, `Made by: PM` and a date. Entries must appear in step order. A step N+1 output dated or logged before the step N decision is a stop-rule breach: `blocks`.
+6. **Decision log is complete.** For each step found, `out/decisions.md` has an entry with a decision, `Made by: PM` and a date. Entries must appear in step order. A step N+1 output dated or logged before the step N decision is a stop-rule breach: `blocks`. Count the entries marked `PM (delegated` and list them in the report; they are not evidence that the PM decided.
 7. **Outputs are current.** If an output is older than a file it reads from, or a logged decision says "changed in the output: X" and X is not in the file, it is stale.
 
 ### B. Rules the steps promised
@@ -44,7 +44,7 @@ Each step checks its own work a little (step 1 counts turns, step 4 runs six tes
 
 ### C. The chain (does it survive the handoffs)
 
-14. **Top pain, end to end.** Take the key persona's `Named top pain` from the extract. Mark where it appears, with the form it takes: problem statement (in their words?), scope (core, small or later), prototype brief (tested, or listed under "won't tell us"), critique (mentioned?), deck. A gap anywhere is `fail`. If it shrank, check that the scope's centrality check says so in writing and the PM decided it in the log.
+14. **Top pain, end to end.** Take each persona's `Named top pain` from the extracts and trace each one. Mark where it appears, with the form it takes: problem statement (in their words?), scope (core, small or later), prototype brief (tested, or listed under "won't tell us"), critique (mentioned?), deck. A gap anywhere is `fail`. If it shrank, check that the scope's centrality check says so in writing and the PM decided it in the log.
 15. **Premises.** Every `contradicted` or `untested` premise in step 4 shows up in step 5 as dropped, or kept and tested. If kept, `out/decisions.md` holds the evidence that would change the PM's mind.
 16. **Collisions.** The top three tensions in step 3 each appear in step 5 under "Collisions decided" with a side chosen, or in the log as deliberately avoided.
 17. **Weakest link.** The weakest link of the business case in step 4 is on the ranked assumptions in step 6, or step 6 says what else would test it. The deck and critique name it.
@@ -59,6 +59,7 @@ Each step checks its own work a little (step 1 counts turns, step 4 runs six tes
 
 ```
 # Pipeline audit — <project> — <date>
+<If not run in a fresh context, one line saying so.>
 Steps found: 0 1 2 ... / Steps missing: ...
 ## Verdict
 One sentence: safe to present | safe with fixes | not safe, and the single biggest reason.
@@ -77,7 +78,7 @@ Keep the failures table to what matters: a PM reads the first ten rows and stops
 
 ## Stop here: show the results and ask how to continue
 
-This step always ends with a stop, including when it runs inside a full pipeline or the user said "run everything". Never redo a step on your own, and never edit another output.
+This step always ends with a stop, including when it runs inside a full pipeline or the user said "run everything". Never redo a step on your own, and never edit another output. In a delegated run, as the orchestrator defines it, show the results, log the delegated decision and continue.
 
 1. **Show the results in the chat**, not only the file path: the verdict, the scorecard, the top pain trail and the failures that block. Then say where the full file is.
 2. **Ask the decisions below.** Give your recommended answer for each, clearly marked as a recommendation.

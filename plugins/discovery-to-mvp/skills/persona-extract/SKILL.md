@@ -19,7 +19,7 @@ Run once per persona. If several interviews share a persona, run once over all o
 Read the whole transcript once without writing. Then go through it turn by turn.
 
 ### 1. Who they are
-Role, team size, how long they've been in the relationship, scale numbers (volumes, frequencies). Only what they said.
+Role, team size, how long they've been in the relationship, scale numbers (volumes, frequencies). Only what they said. Then the call: its recorded length and how it was captured (one source or two). A booked slot is not the recorded length; later steps and the deck quote the recorded length.
 
 ### 2. Mark every interviewer question as open or leading
 A leading question names an answer ("Would a dashboard help with that?"). Any answer to a leading question is **prompted**. A pain the person raised before being asked about that topic is **unprompted**. Unprompted signals weigh more. List the leading questions you found; the PM needs to know.
@@ -30,7 +30,7 @@ For each pain:
 - The best verbatim quote and its turn ID. Add a second ID if they came back to it.
 - **Prompted / unprompted.**
 - **Severity 1–3**, scored from evidence, not tone:
-  - 3 = they built a workaround, OR it cost money/time they can name, OR it happened and had a consequence (a launch missed, a fine, a complaint).
+  - 3 = they built a workaround, OR it cost money/time they can name, OR it happened and had a consequence (a launch missed, a fine, a complaint made to them). A consequence has to be an event the person reports first-hand: who did what, about what, at least once. A habit ("he complains", "they get annoyed") is not an event; with no workaround or named cost it scores 2 at most. Say which in the evidence.
   - 2 = recurring and they can say how often, but no workaround or named cost.
   - 1 = mentioned once, no frequency, no consequence, or only in answer to a leading question.
 - **Pain type: operational or confidence.** Operational pains (lost requests, manual relays, missing status) leave workarounds and costs, so the scale above finds them. Confidence pains (they don't understand why something was done, can't tell if it's the right thing, feel it's random) rarely produce a workaround, so the scale under-scores them. Tag each pain with its type. **Override:** a pain the person raised unprompted and named as their biggest problem, or came back to without being asked, scores at least 2, and the extract flags it `Named top pain` so steps 4 and 5 can't bury it. State the override in the evidence for severity.
@@ -110,7 +110,7 @@ Parked ideas: ...
 
 ## Stop here: show the results and ask how to continue
 
-This step always ends with a stop, including when it runs inside a full pipeline or the user said "run everything". Never start the next step, and never apply a decision, until the user answers.
+This step always ends with a stop, including when it runs inside a full pipeline or the user said "run everything". Never start the next step, and never apply a decision, until the user answers. The one exception is a delegated run, as the orchestrator defines it: show the results, log the delegated decision and continue.
 
 1. **Show the results in the chat**, not only the file path: the top three pains with quote, turn ID and severity (and any `Named top pain`); the leading questions you found; the stated-vs-revealed rows; the trust table; and the silences. Then say where the full file is.
 2. **Ask the decisions below.** Give your recommended answer for each, clearly marked as a recommendation.

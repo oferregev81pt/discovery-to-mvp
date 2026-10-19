@@ -73,7 +73,7 @@ Parked ideas: ...
 
 ## Stop here: show the results and ask how to continue
 
-This step always ends with a stop, including when it runs inside a full pipeline or the user said "run everything". Never start the next step, and never apply a decision, until the user answers.
+This step always ends with a stop, including when it runs inside a full pipeline or the user said "run everything". Never start the next step, and never apply a decision, until the user answers. The one exception is a delegated run, as the orchestrator defines it: show the results, log the delegated decision and continue.
 
 1. **Show the results in the chat**, not only the file path: the flagged rows of the workflow map, the collisions table (at most 6 rows), the "same event, two stories" items and the "neither mentioned" list. Then say where the full file is.
 2. **Ask the decisions below.** Give your recommended answer for each, clearly marked as a recommendation.
@@ -83,5 +83,5 @@ Then wait for the user.
 
 ### Decisions for you
 
-- "These are the top three tensions. For each, which side does v1 favor, or does v1 avoid the question?" (Give a recommended default for each, with one line why.)
+- "These are the top three tensions. For each, which side does v1 favor, or does v1 avoid the question?" (Give a recommended default for each, with one line why. Before offering a default, run it through the scoping rules in `mvp-scope-cutlist`: evidence, replaces a workaround, lives where users are, no missing data, fits the constraint, moves the business outcome. A default that fails a rule is marked `provisional`, and step 5 re-checks it first.)
 - "Which 'neither mentioned' gap should we treat as a known risk, and which need another interview first?"

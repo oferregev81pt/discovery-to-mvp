@@ -240,8 +240,10 @@ def check_decisions(root: Path) -> Result:
             problems.append(f"Step {head[:40]}: no 'Made by: PM'")
         if not re.search(r"(?im)^\s*-\s*Decision:\s*\S", e):
             problems.append(f"Step {head[:40]}: empty Decision")
+    delegated = len(re.findall(r"(?im)^\s*-\s*Made by:\s*PM \(delegated", text))
+    note = f"; {delegated} of {len(entries)} entries delegated (not evidence the PM decided)" if delegated else ""
     return Result("A6 decision log", "fail" if problems else "pass",
-                  f"steps with outputs: {steps_present}; logged: {sorted(logged)}", problems)
+                  f"steps with outputs: {steps_present}; logged: {sorted(logged)}{note}", problems)
 
 
 def check_brief(root: Path) -> Result:
@@ -275,6 +277,17 @@ def check_problem(root: Path) -> Result:
     if not ID_RE.search(body):
         problems.append("no turn ID cited")
     return Result("B8 problem statement", "fail" if problems else "pass", f"{len(words)} words", problems)
+
+
+def check_independence(root: Path) -> Result:
+    """The critique and the audit must say whether they ran in a fresh context."""
+    files = [root / "out" / "07-critique.md", root / "out" / "10-audit.md"]
+    present = [f for f in files if f.exists()]
+    if not present:
+        return Result("B16 independence stated", "n/a", "no critique or audit yet")
+    missing = [f.name for f in present if not re.search(r"(?i)fresh context", read(f))]
+    return Result("B16 independence stated", "fail" if missing else "pass",
+                  "each says whether it ran in a fresh context", [f"{m}: no statement" for m in missing])
 
 
 def check_why_now(root: Path) -> Result:
@@ -411,7 +424,7 @@ def run(root: Path, golden: dict | None) -> list[Result]:
     res = [
         check_raw(root), check_headings(root), check_ids(root, turns), check_quotes(root, turns),
         check_decisions(root), check_brief(root), check_problem(root), check_cutlist(root),
-        check_stock_words(root), check_why_now(root), check_deck_test(root),
+        check_stock_words(root), check_why_now(root), check_deck_test(root), check_independence(root),
     ]
     if golden:
         res += golden_checks(root, golden)
