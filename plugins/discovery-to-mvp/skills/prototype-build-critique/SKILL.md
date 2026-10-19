@@ -35,6 +35,7 @@ Take the role of a head of product who has to approve this work and has ten minu
 Check, in this order:
 
 1. **The why.** Can you find, in one sentence each, why the customer gets value and why the business gets value? Quote the sentences. If either is missing or vague ("improves the experience"), that's the top issue. Rewrite it from the evidence.
+1b. **Is the story about the exercise or about the product?** Does the proposal take a position on where the product goes in a year and what it could become for the customer and the business, or does it only answer the brief? Quote the sentence that states the direction. If there isn't one, that is a top issue for a senior-level reviewer: recommend running `future-ideas`. Also check that nothing the proposal says about the customer ("they trust us", "they love it") is stronger than the evidence in the extracts.
 2. **Evidence to scope.** Pick the three most important v1 capabilities. Does each trace back to a pain or collision with turn IDs? Flag any that don't.
 3. **Does the prototype test the assumption?** Walk the flow against the test question. Could a user session actually produce the kill signal? A prototype that can't fail isn't a test.
 4. **Adoption.** Does the entry point match the adoption plan? Would the persona who said "no new logins" have to log in?

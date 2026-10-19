@@ -12,7 +12,7 @@ Run once per persona. If several interviews share a persona, run once over all o
 ## Inputs
 
 - `out/01-merged-<CODE>.md` for this persona (required). If only raw transcripts exist, stop and suggest running `transcript-reconcile` first; quoting raw transcripts carries their attribution errors forward.
-- `context/brief.md`, for what the team expected to hear.
+- `context/brief.md`, for what the team expected to hear, the beliefs it lists, and whether the call was real or roleplayed. If it was roleplayed, add a line at the top of the extract: `Roleplayed call: accounts are plausible, not representative.` Scores stay evidence-based, and nothing counts as prevalence.
 
 ## Process
 
@@ -33,6 +33,7 @@ For each pain:
   - 3 = they built a workaround, OR it cost money/time they can name, OR it happened and had a consequence (a launch missed, a fine, a complaint).
   - 2 = recurring and they can say how often, but no workaround or named cost.
   - 1 = mentioned once, no frequency, no consequence, or only in answer to a leading question.
+- **Pain type: operational or confidence.** Operational pains (lost requests, manual relays, missing status) leave workarounds and costs, so the scale above finds them. Confidence pains (they don't understand why something was done, can't tell if it's the right thing, feel it's random) rarely produce a workaround, so the scale under-scores them. Tag each pain with its type. **Override:** a pain the person raised unprompted and named as their biggest problem, or came back to without being asked, scores at least 2, and the extract flags it `Named top pain` so steps 4 and 5 can't bury it. State the override in the evidence for severity.
 - Evidence for the score in a few words ("keeps a private sheet since month two").
 
 ### 4. Workarounds
@@ -52,6 +53,12 @@ Each row: Stated (quote + ID) | Revealed (quote + ID) | Interpretation (labelled
 
 ### 7. Their own "biggest problem"
 Quote it in full with its ID. Then one line: does the rest of the interview support it, contradict it, or sharpen it?
+
+### 7b. Trust and satisfaction, split by object
+When the person says they trust, like or are happy with something, find out what it is attached to. Trust in a **person** ("I just trust Tom"), in the **process** (things arrive on time), in the **output** (the builds are good) and in the **reasoning** (I understand why you made this) are different claims, and one can sit next to a complaint about another. For each trust or satisfaction statement write: object | quote [ID] | any complaint about a different object [ID]. Don't summarize it as "trusts us". If the only trust is in one person, note that the trust doesn't transfer to the product or to anyone else on the team.
+
+### 7c. Business consequence
+For each pain scored 2 or 3: did the person say what it costs the business or the relationship (work moved elsewhere, a renewal at risk, a launch missed, hours, money)? Quote it with an ID, or write `none named`. Don't infer a consequence from tone. This feeds the business case in step 4.
 
 ### 8. Likes / must not change
 What they explicitly value. Include warnings ("please don't replace Avi with a robot", "no new apps"). These become constraints in step 5.
@@ -80,11 +87,15 @@ Source: out/01-merged-<CODE>.md
 ## Who
 ## Leading questions in this interview
 ## Pains
-| # | Pain | Quote [ID] | Prompted? | Severity | Evidence for severity |
+| # | Pain | Type | Quote [ID] | Prompted? | Severity | Evidence for severity |
 ## Workarounds
 ## Numbers
 ## Stated vs revealed
 ## Their biggest problem, in their words
+## Trust and satisfaction, by object
+| Object (person / process / output / reasoning) | Quote [ID] | Complaint about another object [ID] |
+## Business consequence
+| Pain # | What it costs the business or relationship [ID] |
 ## Must not change
 ## Other people in the loop
 ## Silences
@@ -96,7 +107,7 @@ Parked ideas: ...
 
 This step always ends with a stop, including when it runs inside a full pipeline or the user said "run everything". Never start the next step, and never apply a decision, until the user answers.
 
-1. **Show the results in the chat**, not only the file path: the top three pains with quote, turn ID and severity; the leading questions you found; the stated-vs-revealed rows; and the silences. Then say where the full file is.
+1. **Show the results in the chat**, not only the file path: the top three pains with quote, turn ID and severity (and any `Named top pain`); the leading questions you found; the stated-vs-revealed rows; the trust table; and the silences. Then say where the full file is.
 2. **Ask the decisions below.** Give your recommended answer for each, clearly marked as a recommendation.
 3. **Ask how to continue**, offering: Continue to step 3, `persona-collide` (or extract the next persona first) · redo this step with changes · edit the output together · stop here.
 

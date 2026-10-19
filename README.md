@@ -2,7 +2,7 @@
 
 A Claude plugin that takes you from raw customer interview transcripts to a scoped v1, a cut list you can defend, and a prototype someone can click.
 
-Most "AI for discovery" advice stops at "paste your transcripts, get themes in three minutes." The themes are the easy part. The work that decides your MVP happens around them: fixing transcripts that put one person's words in another's mouth, separating what people say from what their stories show, finding where two personas want opposite things, and cutting features on the record. This plugin does that work in seven steps, and stops after each one so you make the call.
+Most "AI for discovery" advice stops at "paste your transcripts, get themes in three minutes." The themes are the easy part. The work that decides your MVP happens around them: fixing transcripts that put one person's words in another's mouth, separating what people say from what their stories show, finding where two personas want opposite things, and cutting features on the record. This plugin does that work in seven steps, adds two optional ones for presenting the work, and stops after each one so you make the call.
 
 Built by [Ofer Regev](https://theaipmhub.com) for The AI PM Hub.
 
@@ -18,6 +18,8 @@ Built by [Ofer Regev](https://theaipmhub.com) for The AI PM Hub.
 | 5 | `mvp-scope-cutlist` | v1, what it won't do, and a cut list with a reason, a cost and a revisit trigger per cut | What you push back on |
 | 6 | `prototype-brief` | Ranks assumptions and writes a build-ready brief for the riskiest one | Which assumption to test |
 | 7 | `prototype-build-critique` | Builds the single flow, then reviews it as a skeptical head of product in a fresh context | What to fix before anyone sees it |
+| 8 | `future-ideas` (optional) | A one-year position, a path from v1, and three to five bets nobody asked for, each tied to evidence | Which bet leads |
+| 9 | `mvp-story-deck` (optional) | The whole process and the MVP as a slide deck: why, what we heard, what changed, the problem, v1, the test, what's next | Whether the titles tell the story |
 
 `discovery-to-mvp` is the orchestrator. It runs the steps in order and keeps a decision log in `out/decisions.md`.
 
@@ -30,6 +32,16 @@ There is no autopilot. Even if you say "run the whole pipeline", each step:
 3. Asks how to continue: next step, redo this step with changes, edit the output together, or stop.
 
 Then it waits. Nothing moves until you answer, and every answer is logged with who made it.
+
+## What changed in 1.1
+
+Based on feedback from a real product review of a take-home built with this pipeline. The reviewer said the work started from screens instead of the why, that the customer's biggest complaint became a one-line field, that one claimed premise ("the client trusts us") wasn't tested against the call, and that the call itself tested ideas instead of digging into pain. Fixes:
+
+- `interview-guide` starts from the business outcome, lists the team's beliefs and a question that would break each, bans "would this work for you" with rewrites, and adds an after-call self-check.
+- `persona-extract` splits trust by object (person, process, output, reasoning), tags operational vs confidence pains, and flags a `Named top pain` that can't be scored below 2.
+- `problem-framing` audits premises before drafting and adds a business case: one number, a chain with each link marked evidence or assumption, and the weakest link.
+- `mvp-scope-cutlist` adds a business-link rule and a centrality check so the customer's biggest complaint can't shrink into a field without a written reason.
+- New: `future-ideas` and `mvp-story-deck`.
 
 ## Rules every step follows
 
@@ -58,7 +70,7 @@ Skills then run as `/discovery-to-mvp:transcript-reconcile`, `/discovery-to-mvp:
 
 ### Claude.ai
 
-Each folder under `plugins/discovery-to-mvp/skills/` is a standalone skill. Zip a folder and upload it as a custom skill in Claude's settings. Upload all nine to run the full pipeline.
+Each folder under `plugins/discovery-to-mvp/skills/` is a standalone skill. Zip a folder and upload it as a custom skill in Claude's settings. Upload all eleven to run the full pipeline.
 
 ## Use it on your own interviews
 
