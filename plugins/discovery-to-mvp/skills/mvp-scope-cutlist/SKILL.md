@@ -34,13 +34,21 @@ A candidate is **in v1** only if it passes all of these:
 4. **Lives where users already are.** If the extracts contain "no new logins" or a failed previous attempt at a separate tool, v1's entry point must be inside the existing channel (a link in the message they already get, a reply that works by email). A separate destination needs a reason that beats that evidence.
 5. **Doesn't depend on data or integrations the team doesn't have.**
 6. **Fits the constraint** (team × time).
+7. **Moves the business outcome.** The capability sits on the chain in `out/04-problem.md` ("Business case"), and you can say which link it strengthens. A capability that serves a real pain but sits on no link is either a different problem (park it) or a sign the chain is wrong (say so).
 
 Where a top collision forces a choice, make it, and write which side v1 favors and why.
+
+**Re-check step 3's defaults.** The defaults the PM accepted at step 3 are provisional until they pass these rules. For each, run rules 1 to 7 on the capability it implies. If one fails (it sits on no link of the business chain, or depends on data the team doesn't have), say so before locking the scope and ask the PM whether to keep the default or reverse it.
+
+**Centrality check.** Take each persona's `Named top pain` from the extracts. The key persona's (see the orchestrator) has to be one of the core capabilities of v1, with the effort and depth to actually address it. If it appears only as a small field, a label or a "later", stop and decide on the record: (a) promote it to the core and cut something else, or (b) keep it small and write what the small version cannot prove (for example, "a one-line reason tells us whether clients read it, not whether they understand why the concept was built"). Never shrink the customer's biggest complaint to make room for the easiest-to-build items without saying so in the "Collisions decided" or "Argue with me" section. Any other persona's Named top pain is either addressed by a capability or written here as unaddressed, with the reason and what that costs; it does not get to disappear.
+
+**Rank by evidence and outcome, not just pain score.** Operational pains (relays, lost requests) score high because they leave workarounds. Confidence pains (not understanding why, feeling it's random) leave none. Before locking the in-scope list, look at the ranking once without the severity scores and ask which capability moves the business outcome the most. If that differs from the severity order, say so.
 
 ### 3. Write v1
 - **One sentence**: who does what, where, and what changes for them.
 - **In scope**: 3 to 6 capabilities, each with persona served, evidence IDs, and the workaround or relay it removes.
 - **v1 does not**: explicit list, in plain sentences. "v1 does not show performance data." "v1 does not replace the account manager's message."
+- **What v1 is the first step of**: two sentences on where it leads, taken from the business case (step 8 runs later; if it has already run, from `out/08-future-ideas.md`). After step 8, offer to update this section to match its position. A v1 with no direction reads as a fix for the current process. Write which parts of today's cut list are the next steps along that direction.
 
 ### 4. Write the cut list
 Every candidate not in v1 goes here. The cut list should be at least as long as the in-scope list; if it isn't, you haven't considered enough.
@@ -55,6 +63,7 @@ Every candidate not in v1 goes here. The cut list should be at least as long as 
 - **Entry point:** exactly how they arrive at v1 the first time (e.g. a WhatsApp message they already get carries the link or the buttons).
 - **When they don't use it:** what happens to the work if a user ignores v1 entirely. v1 must degrade to today's process, not break it. Who does what in that case.
 - **Adoption signal:** the one behavior that tells you it's working within the first two weeks.
+- **Business signal:** the leading indicator, within a quarter, that the number from the business case is moving, and what you would see if it isn't. Behavior metrics alone (time to answer, tickets without follow-up) show that the flow works. They don't show that the business gains.
 
 ### 6. Assumptions
 List every assumption v1 depends on, one line each, typed as desirability (will they want it), usability (can they do it), feasibility (can we build it), viability (does it make sense for the business). Step 6 ranks these.
@@ -77,7 +86,10 @@ Don't defend the original scope beyond one sentence. If you think the PM is wron
 # v1 scope
 ## v1 in one sentence
 ## In scope
-| Capability | Serves | Evidence [IDs] | Removes workaround / relay |
+| Capability | Serves | Evidence [IDs] | Removes workaround / relay | Business link |
+## Centrality check
+Named top pain: ... / Where it sits in v1: core | small | later / If small, what the small version can't prove: ...
+## First step of
 ## v1 does not
 ## Cut list
 | Feature | Considered because [IDs] | Cut because | What we lose | Revisit when |
@@ -91,9 +103,9 @@ Don't defend the original scope beyond one sentence. If you think the PM is wron
 
 ## Stop here: show the results and ask how to continue
 
-This step always ends with a stop, including when it runs inside a full pipeline or the user said "run everything". Never start the next step, and never apply a decision, until the user answers.
+This step always ends with a stop, including when it runs inside a full pipeline or the user said "run everything". Never start the next step, and never apply a decision, until the user answers. The one exception is a delegated run, as the orchestrator defines it: show the results, log the delegated decision and continue.
 
-1. **Show the results in the chat**, not only the file path: v1 in one sentence, the in-scope table, the full cut list table and the "Argue with me" items. Then say where the full file is.
+1. **Show the results in the chat**, not only the file path: v1 in one sentence, the in-scope table, the centrality check, the full cut list table and the "Argue with me" items. Then say where the full file is.
 2. **Ask the decisions below.** Give your recommended answer for each, clearly marked as a recommendation.
 3. **Ask how to continue**, offering: Continue to step 6, `prototype-brief` · redo this step with changes · edit the output together · stop here.
 
@@ -102,4 +114,5 @@ Then wait for the user.
 ### Decisions for you
 
 - "Push back on at least one cut or one inclusion. Which?" (If the PM accepts the first scope as-is, say plainly that a first scope is almost never right and ask which item they'd defend least.)
+- "The customer's biggest complaint is <X>. It sits <core / small / later> in v1. Do you agree, or do you promote it?" (Recommend promoting it unless the effort is out of reach, and then recommend writing what the small version cannot prove.)
 - "Is the 'when they don't use it' fallback acceptable for the account team?"

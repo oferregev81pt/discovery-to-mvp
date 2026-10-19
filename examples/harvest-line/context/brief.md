@@ -21,3 +21,15 @@ Harvest Line (the distributor) · Olive & Ash (Tamar's restaurant) · Stockwise 
 - Stockwise has no API; anything that changes an order goes through a person or a CSV import.
 - Delivery vans have no GPS tracking.
 - Sales reps must stay in the loop; restaurants buy from people they trust.
+
+## Why this matters to the business
+Business outcome: restaurant retention, meaning the share of the roughly 200 restaurants still ordering 12 months from now. We would notice it moving as fewer restaurants moving their produce order to another distributor, and fewer account-level complaints to sales leadership. (Proposed for this sample case; nobody at Harvest Line has named a number yet.)
+
+## What the team currently believes
+- Restaurants complain a lot about wrong deliveries.
+- An ordering app would fix it.
+- Chefs want a catalog with prices and order history.
+- Restaurants trust Harvest Line's deliveries.
+
+## Calls
+Treat both calls as real interviews.

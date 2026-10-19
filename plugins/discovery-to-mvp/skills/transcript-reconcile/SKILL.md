@@ -15,6 +15,8 @@ Auto-transcripts lie in two ways. Speaker diarization puts one person's words in
 
 If you're handed transcripts of two different calls, process each call separately and produce one merged file per call.
 
+**One source only, or a source that is already merged.** Sometimes there is no second transcript to reconcile (a single export, or a merge someone did in an earlier session). Don't invent a second source. Diagnose the one you have, say in the diagnosis that it is single-source or pre-merged, keep any merge notes it carries, add turn IDs, apply the glossary and log every change. If the source has no timestamps, number the turns without them and say so in the header. If it contains a translation, see step 8.
+
 ## Process
 
 ### 1. Inventory and diagnose (don't assume which source is better)
@@ -57,7 +59,7 @@ Watch for **meaning-changing** errors: words that are real words but wrong ("ene
 
 ### 7. Number the turns
 
-Give every turn an ID: speaker code + three-digit sequence over the whole call, e.g. `[INT-001]`, `[TAM-002]`, `[INT-003]`. Sequence numbers are shared across speakers so IDs sort in call order. Keep the original timestamp after the ID.
+Give every turn an ID: speaker code + three-digit sequence over the whole call, e.g. `[INT-001]`, `[TAM-002]`, `[INT-003]`. Sequence numbers are shared across speakers so IDs sort in call order. Keep the original timestamp after the ID. The interviewer's code `INT` repeats in every call, so `INT-025` can mean a different turn in each. In any file that covers more than one call (collisions, problem, scope, audit, deck), cite an interviewer turn with its call: `INT-025 (TAM)`. A per-persona extract may cite it bare.
 
 ### 8. Translate if needed
 
@@ -98,7 +100,7 @@ Put attribution and meaning fixes at the top of the merge notes. Those are the o
 
 ## Stop here: show the results and ask how to continue
 
-This step always ends with a stop, including when it runs inside a full pipeline or the user said "run everything". Never start the next step, and never apply a decision, until the user answers.
+This step always ends with a stop, including when it runs inside a full pipeline or the user said "run everything". Never start the next step, and never apply a decision, until the user answers. The one exception is a delegated run, as the orchestrator defines it: show the results, log the delegated decision and continue.
 
 1. **Show the results in the chat**, not only the file path: the two-line diagnosis of each source, the turn counts, and every note in "Check these first" with the original text and the merged text side by side. Then say where the full file is.
 2. **Ask the decisions below.** Give your recommended answer for each, clearly marked as a recommendation.

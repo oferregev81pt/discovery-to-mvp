@@ -5,7 +5,7 @@ description: Takes the PM through the discovery pipeline one step at a time, fro
 
 # Discovery to MVP (orchestrator)
 
-This skill chains eight step skills into one pipeline. Each step produces one file. Each file feeds the next. Between steps the PM makes a decision, and that decision is written down.
+This skill chains eleven step skills into one pipeline. Each step produces one file. Each file feeds the next. Between steps the PM makes a decision, and that decision is written down.
 
 The pipeline exists because "summarize these interviews" is the easy 10%. The value is in the steps a summary skips: fixing who said what, separating what people stated from what their stories reveal, finding where two personas collide, writing a cut list you can defend, and prototyping only the riskiest piece.
 
@@ -21,6 +21,9 @@ The pipeline exists because "summarize these interviews" is the easy 10%. The va
 | 5 | `mvp-scope-cutlist` | `out/04`, `out/03`, `out/02-*`, brief | `out/05-scope.md` |
 | 6 | `prototype-brief` | `out/05`, `out/02-*`, `out/01-*` | `out/06-prototype-brief.md` |
 | 7 | `prototype-build-critique` | `out/06`, `out/04`, `out/05` | `prototype/`, `out/07-critique.md` |
+| 8 | `future-ideas` (optional, after the critique) | `out/04`, `out/05`, `out/03`, `out/02-*`, `out/07` | `out/08-future-ideas.md` |
+| 9 | `mvp-story-deck` (optional, when presenting) | everything in `out/`, `out/decisions.md` | `out/09-story-outline.md`, a slide deck |
+| 10 | `pipeline-audit` (recommended before presenting; works on a partial run) | everything in `out/`, `raw/`, `prototype/`, `out/decisions.md` | `out/10-audit.md` |
 
 All steps also append to `out/decisions.md`.
 
@@ -36,7 +39,9 @@ out/decisions.md        # running log of decisions
 prototype/              # the app built in step 7
 ```
 
-If `context/brief.md` is missing, ask the user for: the problem space in two or three sentences, who was interviewed (name, role, which side of the relationship), known terms and product names (the glossary), and constraints (team, time, data you do or don't have). Write the brief before step 1. It is short; half a page is enough.
+If `context/brief.md` is missing, ask the user for: the problem space in two or three sentences, **why it matters to the business and which number it should move** (if there is none, write "none named yet"; steps 4 and 5 will treat that as a gap), who was interviewed (name, role, which side of the relationship), **whether each call was real or roleplayed**, known terms and product names (the glossary), **what the team currently believes about the customer** (a few plain statements, such as "clients trust our deliveries"), **why now** (what changed recently, or what happens if the team waits a year; if nothing, write "none named yet"), and constraints (team, time, data you do or don't have). Write the brief before step 1. It is short; half a page is enough.
+
+If any calls were roleplayed, every later step says so in its caveats, and the final deck says so on the evidence slide. Roleplayed accounts show what a plausible person might say. They don't show how many customers behave that way.
 
 ## How to run
 
@@ -45,23 +50,35 @@ If `context/brief.md` is missing, ask the user for: the problem space in two or 
 3. **Stop and show the results.** Every step ends the same way: show the step's key results in the chat (each step skill says what to show), ask its 1 to 3 decisions with your recommendation marked as such, and ask how to continue: next step, redo this step with changes, edit the output together, or stop. Then wait. **Never start the next step on your own**, even when the user asked to "run the whole pipeline". A request to run the pipeline means "take me through it", one step at a time.
 4. **Log the decision.** Append to `out/decisions.md`:
    ```
-   ## Step N: <step name> — <date>
+   ## Step N: <step name> — <date> <time>
    - Decision: <what was decided>
    - Made by: PM
    - Why: <one line, in the PM's words when they gave a reason>
-   - Changed in the output: <what you edited as a result, or "nothing">
+   - Changed in the output: <one line per file, `path: what changed`, or "nothing">
    ```
+The time lets the log show the order of stops. Name only changes you actually made; the audit looks for each one in the file.
 5. **Apply the decision** to the step's output file before moving on (for example, re-cut the scope after pushback). Then continue to the next step.
 
-There is no unattended mode. If nobody is there to answer (a scheduled run, or the user stepped away), finish the current step, post its results and questions, and stop. The next step waits for a person. Never deploy anything without the user.
+There is no unattended mode by default. If nobody is there to answer (a scheduled run, or the user stepped away), finish the current step, post its results and questions, and stop. The next step waits for a person. Never deploy anything without the user.
+
+**Delegated run.** If the PM says in chat to run without asking ("run the rest without asking me", "take your recommendations"), that is an instruction, and it is the only way past a stop. Then:
+- Show each step's results in the chat anyway, take your own marked recommendation at each checkpoint, and keep going.
+- Log every such entry as `Made by: PM (delegated: "<their words>")` (a run started with a prompt that says to take your own recommendation is delegated too; quote that instruction), write "the model took its own recommendation" in the Why line, and never write plain `PM`. A delegated entry is not evidence that the PM decided; the audit counts them.
+- Still stop before anything outward-facing: deploying, sharing, sending, publishing beyond a private page, spending money. Delegation covers the decisions, not those.
+- Don't invent the PM's reasons. Where a skill asks the PM for a reason (such as what evidence would change their mind about a premise), write `not asked (delegated run)`.
+- Step 9's outline-approval stop is waived the same way and logged.
+- It covers the steps in front of it, and ends when the PM sends any message that changes the plan.
 
 ## Rules that hold across every step
 
-- **Traceability.** Every claim about what a person said or experienced carries a turn ID from a merged transcript, like `[TAM-024]`. Step 1 creates these IDs. If a claim has no ID, it's an interpretation and must be labelled `Interpretation:`. If neither, delete it.
+- **Traceability.** Every claim about what a person said or experienced carries a turn ID from a merged transcript, like `[TAM-024]`. Step 1 creates these IDs. Interviewer turns are `INT-nnn` in every call, so outside a single persona's extract cite them with the call, like `INT-025 (TAM)`. If a claim has no ID, it's an interpretation and must be labelled `Interpretation:`. If neither, delete it.
 - **Raw stays raw.** Never edit files in `raw/`. Quotes get checked against `out/01-*` and, when in doubt, against `raw/`.
-- **Verbatim means verbatim.** Quotes are copied from the merged transcript. Don't tidy grammar inside quote marks.
+- **Verbatim means verbatim.** Quotes are copied from the merged transcript. Don't tidy grammar inside quote marks. Quote marks mean verbatim speech from a merged transcript or the brief and nothing else: name sections, labels and product copy in plain text or code formatting.
 - **Hedges are data.** "I guess", "maybe half, maybe less", "mostly on top" carry meaning. Keep them in quotes and notice them.
 - **No solutions before step 5.** Steps 1 to 4 describe people and problems. If a solution idea comes up early, park it in a `Parked ideas` line at the end of the file; step 5 picks them up.
+- **Start from the why, and challenge your own starting point.** The brief's premises (what the team believes about the customer, which number should move) get checked against the evidence in step 4, and again whenever a later step finds something that contradicts them. When the evidence contradicts a premise, say so at once and offer to change the plan, before anyone has to push. If the PM defends a premise, ask what evidence would change their mind, and write the answer in `out/decisions.md`.
+- **The customer's own biggest complaint is the spine, not a field.** Whatever each persona names unprompted as their biggest problem (`Named top pain`) has to be handled on the record. The **key persona** is the user or buyer whose use decides whether v1 works. The brief names them; if it doesn't, ask the PM at the step 2 checkpoint and log the answer. The key persona's top pain has to appear in the problem statement and as a core capability of v1, or the scope has to say in writing why it doesn't and what would test it properly. Another persona's top pain is either addressed, or the scope says in writing what v1 leaves unaddressed and why, and the PM decides.
+- **Why, why now, fit.** Whatever argues for a direction answers three questions in order: why this problem (who, what it costs, which number), why now (what triggers it, labelled evidence, brief or assumption), and how the solution fits the needs (need by need, with the gaps shown). Steps 2 to 5 produce the material and step 9 presents it.
 - **The model proposes, the PM decides.** Each step ends with options and a recommendation, never a verdict, and the pipeline can't move until the PM answers. The decision log is the evidence of who decided.
 - **Plain writing.** Outputs are read by people. Short sentences, concrete nouns, no filler ("leverage", "seamless", "robust", "it's important to note"). Numbers over adjectives.
 
@@ -71,4 +88,4 @@ Every step skill also works on its own. If the user invokes one directly, it che
 
 ## When the pipeline ends
 
-After step 7, give the user three lines: the v1 in one sentence, the assumption the prototype tests, and the top issue from the critique. Then point to `out/decisions.md` as the record of what was decided and by whom.
+After step 7, give the user three lines: the v1 in one sentence, the assumption the prototype tests, and the top issue from the critique. Then say that two optional steps remain for anyone who has to present or defend the work: `future-ideas` (step 8, a view of where the product goes and what to bring that nobody asked for) and `mvp-story-deck` (step 9, the whole story as a slide deck). Recommend running them in that order, because the deck uses step 8's output. Then recommend `pipeline-audit` (step 10) as the last thing before anyone else sees the work: it checks the links between steps, which no single step can check about itself. It can also be run mid-pipeline, for example after step 5, when the cost of a lost fact is lowest. Point to `out/decisions.md` as the record of what was decided and by whom.

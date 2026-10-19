@@ -16,6 +16,8 @@ The instinct is to prototype the whole v1, or the most fun screen. Both waste th
 ## Process
 
 ### 1. Score the assumptions
+Add the **weakest link** from the business case in `out/04-problem.md` to the list if scope doesn't already hold it. It is usually the assumption the whole bet rests on ("a client who understands the why approves faster"), and a prototype that tests only a workflow can pass while this one stays untested. If the prototype can't test it, say what would (a metric, a pilot, another interview) and put that in the "What this won't tell us" section.
+
 For each assumption in `out/05-scope.md`:
 - **Impact if wrong (1–5):** 5 = v1 is pointless; 1 = minor tweak.
 - **Uncertainty (1–5):** 5 = no evidence either way, or evidence points against it; 1 = interviews directly confirm it.
@@ -81,7 +83,7 @@ Entry point / Steps / End state
 
 ## Stop here: show the results and ask how to continue
 
-This step always ends with a stop, including when it runs inside a full pipeline or the user said "run everything". Never start the next step, and never apply a decision, until the user answers.
+This step always ends with a stop, including when it runs inside a full pipeline or the user said "run everything". Never start the next step, and never apply a decision, until the user answers. The one exception is a delegated run, as the orchestrator defines it: show the results, log the delegated decision and continue.
 
 1. **Show the results in the chat**, not only the file path: the top three ranked assumptions, the test question, the flow steps, the success criteria and the kill signal. Then say where the full file is.
 2. **Ask the decisions below.** Give your recommended answer for each, clearly marked as a recommendation.
