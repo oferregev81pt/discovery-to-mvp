@@ -79,6 +79,14 @@ Topics the brief expected, or that the workflow obviously includes, that this pe
 - No solutions. If one occurs to you, add it to a `Parked ideas` line at the end.
 - Don't merge two different pains because they sound alike. "I can't find my old orders" and "my late change wasn't seen" are different problems with different fixes.
 
+## Self-check before showing it
+
+Don't trust your own quoting. After writing the extract, check it mechanically (a short script is fine):
+- Every turn ID exists in `out/01-merged-<CODE>.md` and is the turn that says the thing. Count and cite by the ID printed there, not by position.
+- Every quoted string is a substring of the merged transcript (allowing `...` for a cut). Paraphrases go without quote marks.
+- Every "unprompted" label has an earlier turn ID showing no question about the topic came first, and every "prompted" label names the leading question (`INT-nnn`).
+Fix what fails, then say in the chat how many quotes and IDs you checked. In a test run of this plugin, a first draft had three wrong turn IDs and six non-verbatim quotes that only this check caught.
+
 ## Output: `out/02-extract-<CODE>.md`
 
 ```

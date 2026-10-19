@@ -47,7 +47,7 @@ No more than 11 slides. Fewer is better. An appendix may hold the full cut list,
 - **Speaker notes** carry the evidence IDs, the one-line reasoning behind the slide and the likely question with an answer.
 
 ### 4. Build the deck
-Use the deck tool the host provides: a slide or deck type if the environment lists one, otherwise a PowerPoint skill. Don't write the deck as markdown or HTML pages and call it done. Use the PM's design system or brand colors if given. Check the result by opening it and reading each slide for overflow, empty placeholders and titles that don't read as claims. Report the link or file location. Don't share or send the deck anywhere without the PM's go-ahead.
+Use the deck tool the host provides: a slide or deck type if the environment lists one, otherwise a PowerPoint skill. Don't write the deck as markdown or HTML pages and call it done. Use the PM's design system or brand colors if given. Check the result by opening it and reading each slide for overflow, empty placeholders and titles that don't read as claims. Some deck tools tell you not to verify unless asked; if yours does, don't open it unasked, and instead tell the PM plainly that the layout was not visually checked and offer to check it. Either way, check the content mechanically: every slide title appears in the outline, every number and quote on a slide is in the source files, and no slide has more than one quote. Report the link or file location. Don't share or send the deck anywhere without the PM's go-ahead.
 
 ## Output
 
