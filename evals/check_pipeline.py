@@ -287,8 +287,10 @@ def check_cutlist(root: Path) -> Result:
     problems = []
     if len(cut_rows) < len(in_rows):
         problems.append(f"cut list has {len(cut_rows)} rows, in-scope has {len(in_rows)}")
+    months = "january|february|march|april|may|june|july|august|september|october|november|december"
     date_like = re.compile(
-        r"\b20\d\d\b|\bQ[1-4]\b|next (week|month|quarter|year)|\b(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\b",
+        rf"\b20\d\d\b|\bQ[1-4]\b|\b(in|by|before|after|on|until)\s+({months})\b"
+        r"|\bnext (week|month|quarter|year)\b|\bin \d+ (days|weeks|months)\b",
         re.I)
     for r in cut_rows:
         name = r[0][:40] if r else "?"

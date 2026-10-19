@@ -100,6 +100,14 @@ class TestPlantedDefects(Case):
         self.edit("out/05-scope.md", "when vans report position", "in Q3 2026")
         self.assertEqual(self.status("B10").status, "fail")
 
+    def test_revisit_words_that_only_look_like_months_are_fine(self):
+        self.edit("out/05-scope.md", "when vans report position", "when a decision on marketing data is made, and may 3 buyers ask")
+        self.assertEqual(self.status("B10").status, "pass")
+
+    def test_revisit_in_a_month_name_fails(self):
+        self.edit("out/05-scope.md", "when vans report position", "in October")
+        self.assertEqual(self.status("B10").status, "fail")
+
     def test_what_we_lose_is_nothing(self):
         self.edit("out/05-scope.md", "buyers who want a map will be disappointed", "nothing")
         self.assertEqual(self.status("B10").status, "fail")
