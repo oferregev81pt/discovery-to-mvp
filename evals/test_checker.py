@@ -73,6 +73,13 @@ class TestPlantedDefects(Case):
         p.write_text("## Step ".join([parts[0], parts[2], parts[1]] + parts[3:]))
         self.assertEqual(self.status("A6").status, "fail")
 
+    def test_a_rebuild_entry_may_come_after_later_steps(self):
+        p = self.root / "out" / "decisions.md"
+        p.write_text(p.read_text() + "## Step 4: problem-framing (rebuild) — 2026-01-05\n- Decision: redone\n- Made by: PM\n- Why: x\n- Changed in the output: y\n")
+        self.assertEqual(self.status("A6").status, "pass")
+        p.write_text(p.read_text() + "## Step 2: persona-extract — 2026-01-06\n- Decision: late\n- Made by: PM\n- Why: x\n- Changed in the output: y\n")
+        self.assertEqual(self.status("A6").status, "fail")
+
     def test_decision_without_pm(self):
         self.edit("out/decisions.md", "- Made by: PM", "- Made by: model")
         self.assertEqual(self.status("A6").status, "fail")

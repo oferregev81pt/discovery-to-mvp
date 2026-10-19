@@ -19,7 +19,7 @@ Built by [Ofer Regev](https://theaipmhub.com) for The AI PM Hub.
 | 6 | `prototype-brief` | Ranks assumptions and writes a build-ready brief for the riskiest one | Which assumption to test |
 | 7 | `prototype-build-critique` | Builds the single flow, then reviews it as a skeptical head of product in a fresh context | What to fix before anyone sees it |
 | 8 | `future-ideas` (optional) | A one-year position, a path from v1, and three to five bets nobody asked for, each tied to evidence | Which bet leads |
-| 9 | `mvp-story-deck` (optional) | The whole process and the MVP as a slide deck: why, what we heard, what changed, the problem, v1, the test, what's next | Whether the titles tell the story |
+| 9 | `mvp-story-deck` (optional) | The case as a 12-slide deck in product-sense order: why it matters, for whom, where today fails, why now, why this option, how well it fits (gaps shown), tradeoffs, how we will know, risks. Runs a deck test on the outline first | Whether the titles tell the story |
 | 10 | `pipeline-audit` | Read-only check of the whole run: IDs resolve, quotes are verbatim, the top pain survives every handoff, premises were handled, every step logged a decision | Which failures to redo, which to accept |
 
 `discovery-to-mvp` is the orchestrator. It runs the steps in order and keeps a decision log in `out/decisions.md`.
@@ -46,6 +46,8 @@ Based on feedback from a real product review of a take-home built with this pipe
 
 ## What changed in 1.2
 
+- `mvp-story-deck` follows customer-first product sense: why, why now, and a fit map that shows where v1 does not meet a need. Upstream, `persona-extract` records recent changes, `problem-framing` states why now with labelled triggers, and the brief and interview guide ask for it.
+- An `evals/` folder: a deterministic checker, golden assertions for the sample case, judge rubrics, and the report of the first full run.
 - New: `pipeline-audit` (step 10). Read-only check of the whole run: turn IDs resolve, quotes are verbatim, the customer's top pain survives from extract to scope to prototype, contradicted premises were handled, every step stopped and logged a decision. Writes `out/10-audit.md` with the step to redo for each failure. Run it before presenting, or mid-pipeline.
 
 ## Rules every step follows

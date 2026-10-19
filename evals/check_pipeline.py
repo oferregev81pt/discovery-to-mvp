@@ -223,11 +223,13 @@ def check_decisions(root: Path) -> Result:
         return Result("A6 decision log", "fail", "out/decisions.md is missing")
     text = read(d)
     entries = re.split(r"(?m)^##\s+Step\s+", text)[1:]
-    nums = [int(m.group(1)) for e in entries if (m := re.match(r"(\d+)", e))]
+    # An entry for a re-run or a fix of an earlier step may come after later steps.
+    revisit = re.compile(r"(?i)rebuild|re-run|rerun|revision|fixes|follow-up|pushback|remaining")
+    nums = [int(m.group(1)) for e in entries if (m := re.match(r"(\d+)", e)) and not revisit.search(e.splitlines()[0])]
     problems = []
     if nums != sorted(nums):
         problems.append(f"entries out of order: {nums}")
-    logged = set(nums)
+    logged = {int(m.group(1)) for e in entries if (m := re.match(r"(\d+)", e))}
     # steps 9 and 10 write their own logs only when they have run; others must all be logged
     for s in steps_present:
         if s not in logged:
